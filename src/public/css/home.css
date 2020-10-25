@@ -1,0 +1,53 @@
+#container{
+    width: 1000px;      /*Rộng 1000px*/
+                margin: 0px auto;   /*Canh giữa màn hình*/
+                text-align: center; /*Text bên trong canh giữa*/
+                font-size: 30px;    /*Font chữ 30px*/
+                color: black;        /*Font màu trắng*/
+}
+
+#Title-page{
+    height: 100px;
+    text-align: center;
+    background: aqua;
+}
+
+.Image-page{
+
+    float: left;
+    width: 600px;
+    height: 600px;    
+    
+}
+
+.Login {
+    width: 400px;
+    float: left;
+    height: 600px;
+    background-color: rgb(51, 233, 240);
+    
+}
+
+#main .Login .box{
+    display: flex;
+    padding-left: 100px;
+    flex-direction: column;
+}
+#main .Login .submit-button{
+
+    padding-top: 50px;
+}
+
+#main .Login .box div {
+    width: 70px;
+    height: 70px;
+}
+
+#main .Login div h1{
+
+    font-size: 50px;
+}
+
+#main:after{
+    clear:both;
+}
