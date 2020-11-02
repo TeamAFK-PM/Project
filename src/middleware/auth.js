@@ -1,19 +1,28 @@
+const createError = require("http-errors");
+
+
+const bcrypt = require('bcrypt');
+
 const { poolPromise } = require('../db')
+
+
+
+module.exports.hash = async (password) =>{
+  try {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+  } catch (e) {
+    console.log("Error hashing password with bcrypt", e);
+  }
+}
+
 
 module.exports.auth = async (req, res, next) =>{
 
-    if (!req.signedCookies.userId){
+    if (!req.session.user || !req.cookies.user_id) {
+        
         res.redirect('/');
+        
         return;
-    }
-    console.log(req.signedCookies.userId)
-    const pool = await poolPromise;
-    var result = await pool.request()
-         .query(`select * from USERS where ID = '${req.signedCookies.userId}'`) 
-
-    if (!result.rowsAffected){
-        res.redirect('/');
-        return;
-    }
+      }
     next();
-}
+};
