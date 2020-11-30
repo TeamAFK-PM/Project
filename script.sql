@@ -50,6 +50,7 @@ create table PhieuDangKy(
 
 --Ràng buộc
 --1 Không được tạo tên đăng nhập trùng với Người dùng hiện tại
+go
 create trigger exist_username
 on PhieuDangKy
 for insert

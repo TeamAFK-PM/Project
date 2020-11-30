@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res)=> {
     
-    res.render('home.ejs');
+    res.render('Tournament.ejs');
 });
 
 app.use('/', user);

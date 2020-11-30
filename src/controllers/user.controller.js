@@ -1,11 +1,17 @@
 const bcrypt = require('bcrypt');
-const { poolPromise } = require('../db')
+const { poolPromise } = require('../config/db')
+
+
+module.exports.getLogin = async (req, res) => {
+
+    res.render("index.ejs");
+
+}
 
 module.exports.login = async (req, res) => {
     try{
         
 
-        
         const pool = await poolPromise;
         var results = await pool.request()
             .query(`select * from USERS where USERNAME = '${req.body.username}'`);

@@ -14,7 +14,7 @@ router.get('/logout', authorize.auth, controllers.logout)
 
 router.get('/a', authorize.auth, controllers.index)
 
-
+router.get('/login', controllers.getLogin);
 //router.get('/:id', authorize.auth, controllers.index)
 
 

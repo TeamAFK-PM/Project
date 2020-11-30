@@ -3,7 +3,7 @@ const createError = require("http-errors");
 
 const bcrypt = require('bcrypt');
 
-const { poolPromise } = require('../db')
+const { poolPromise } = require('../config/db')
 
 
 
