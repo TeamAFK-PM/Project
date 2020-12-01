@@ -14,8 +14,21 @@
 						<li class="nav-item"><a href="/" class="nav-link"><span class = "text-white">Home</span></a></li>
 						<li class="nav-item"><a href="index.html#About" class="nav-link"><span  class = "text-white">About us</span></a></li>
 						<li class="nav-item"><a href="search.html" class="nav-link"><span class = "text-white">Search</span></a></li>
-						<li class="nav-item"><a href="register.html" class="nav-link"><span class = "text-white">Register</span></a></li>
-						<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
+						
+						<% if (!locals.session.user) {%>
+							
+							<li class="nav-item"><a href="/register" class="nav-link"><span class = "text-white">Register</span></a></li>
+							<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
+							
+						<%} else {%>
+							<li class="dropdown-acc nav-item "><a href="/profile" class="nav-link"><span class = "text-white"><%= session.user.HoTen%></span></a>
+								<ul role = "menu" class="sub-menu-acc">
+									<li><a href="/profile">Information</a></li>
+									<li><a href="/logout">Log out</a></li>
+								</ul>
+							</li>
+							
+						<%}%>	
 					  </ul>
 				</ul>
 			  </div>

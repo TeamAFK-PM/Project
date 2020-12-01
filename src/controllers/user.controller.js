@@ -4,20 +4,23 @@ const { poolPromise } = require('../config/db')
 
 module.exports.getLogin = async (req, res) => {
 
-    res.render("index.ejs");
-
+    error = req.session.err;
+    delete req.session.err;
+    
+    res.render("index.ejs", {err: error});
+   
 }
 
 module.exports.login = async (req, res) => {
     try{
         
-
+        console.log(req.body)
         const pool = await poolPromise;
        
         var results = await pool.request()
             .query(`select * from NguoiDung where TenDangNhap = '${req.body.username}'`);
 
-        
+        console.log(results.rowsAffected)
         if (results.rowsAffected != 0){
 
             bcrypt.compare(req.body.password, results.recordset[0].MatKhau, function (err, result) {
@@ -30,16 +33,19 @@ module.exports.login = async (req, res) => {
                 if (result == true) {
                     //set session
                     req.session.user = results.recordset[0];
-                    
+                    console.log(req.session.user);
                     res.redirect('/');
                 
                 } else {
+                    
+                    req.session.err ="Mật khẩu của bạn nhập chưa đúng, vui lòng nhập lại mật khẩu giúp mình nhé";
                     res.redirect('/login');
                 }
               });
         }
         else{
-            res.redirect('/');
+            req.session.err ="Đăng nhập KHÔNG thành công. Bạn vui lòng thử lại hoặc kiểm tra xem mình có được chấp nhận là cầu thủ chưa nhé.";
+            res.redirect('/login');
         }
 
          

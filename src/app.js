@@ -40,6 +40,11 @@ app.use(
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
+    res.locals.session = req.session;
+    res.locals.user = req.session.user;
+    if ( req.session.user)
+        req.session.user.HoTen = req.session.user.HoTen;
+
     if (req.cookies.user_id && !req.session.user) {
         res.clearCookie('user_id');        
     }
