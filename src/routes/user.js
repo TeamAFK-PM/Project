@@ -7,14 +7,19 @@ var authorize = require("../middleware/auth")
 
 const router = express.Router();
 
-
        
-router.post('/profile', controllers.login);
+router.post('/login', controllers.login);
+router.get('/login', controllers.getLogin);
+
+router.route('/register')
+    .get(controllers.getRegister)
+    .post(controllers.postRegister);
+
 router.get('/logout', authorize.auth, controllers.logout)
 
 router.get('/a', authorize.auth, controllers.index)
 
-router.get('/login', controllers.getLogin);
+
 //router.get('/:id', authorize.auth, controllers.index)
 
 

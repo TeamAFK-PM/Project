@@ -13,13 +13,14 @@ module.exports.login = async (req, res) => {
         
 
         const pool = await poolPromise;
+       
         var results = await pool.request()
-            .query(`select * from USERS where USERNAME = '${req.body.username}'`);
+            .query(`select * from NguoiDung where TenDangNhap = '${req.body.username}'`);
 
-        console.log(results.recordset[0].PASS);
+        
         if (results.rowsAffected != 0){
 
-            bcrypt.compare(req.body.password, results.recordset[0].PASS, function (err, result) {
+            bcrypt.compare(req.body.password, results.recordset[0].MatKhau, function (err, result) {
 
                 if(err){
                     return res.status(404).json({
@@ -30,14 +31,15 @@ module.exports.login = async (req, res) => {
                     //set session
                     req.session.user = results.recordset[0];
                     
-                    res.render('18120561.ejs',{student: results.recordset[0].USERNAME, mssv: "111", email: results.recordset[0].email})
+                    res.redirect('/');
+                
                 } else {
-                    res.render('home.ejs')
+                    res.redirect('/login');
                 }
               });
         }
         else{
-            res.render('home.ejs');
+            res.redirect('/');
         }
 
          
@@ -47,6 +49,51 @@ module.exports.login = async (req, res) => {
     }
 
 };
+
+
+module.exports.getRegister = async(req, res) =>{
+
+
+    res.render('Register.ejs');
+}
+
+module.exports.postRegister = async(req, res) => {
+
+    const {name, sex, phone, email, birthday, cmnd, tour, address} = req.body;
+    console.log(birthday);
+    try{
+        const pool = await poolPromise;
+       
+        var results = await pool.request()
+            .query(`select * from NguoiDung where HoTen = '${name}' and NgaySinh = '${birthday}' and GioiTinh = '${sex}' and SoDienThoai = '${phone}' and DiaChi = '${address}' and Email = '${email}' or email = '${email}'`);
+        
+        if (results.rowsAffected != 0){
+            
+            
+            res.redirect('/register');
+        }
+        else{
+            
+            const pool = await poolPromise;
+            
+            let checksex = 0;
+            if (sex == 'male')
+                checksex = 1;
+            var result = await pool.request()
+                .query(`INSERT INTO NguoiDung VALUES ('${email}', '${1}', '${name}', '${2}', '${birthday}', '${address}', '${email}', '${phone}', '${checksex}', '${cmnd}', '${0}')`);
+        
+            
+            res.redirect('/');
+        }
+
+
+
+    }catch(err){
+        res.status(404);
+        res.send(err.message)
+    }
+}
+
 
 module.exports.logout = async (req, res) =>{
     console.log(12123);

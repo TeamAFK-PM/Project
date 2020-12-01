@@ -8,37 +8,7 @@
 </head>
 
 <body class="bradcam_area breadcam_bg_2" style="padding: 0 !important;">
-    <div class="container-dropdown" style="height: 82px; background-color: none !important;">
-        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target ftco-navbar-dark"
-            id="ftco-navbar">
-            <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="./img/svg_icon/icon-home.png" alt="Home"
-                        height="120px" width="120px"></a>
-                <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-                    data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="oi oi-menu"></span> Menu
-                </button>
-
-                <div class="collapse navbar-collapse" id="ftco-nav">
-                    <ul class="navbar-nav nav ml-auto text-white">
-                        <ul class="navbar-nav nav ml-auto">
-                            <li class="nav-item"><a href="index.html" class="nav-link"><span
-                                        class="text-white">Home</span></a></li>
-                            <li class="nav-item"><a href="index.html#About" class="nav-link"><span
-                                        class="text-white">About us</span></a></li>
-                            <li class="nav-item"><a href="search.html" class="nav-link"><span
-                                        class="text-white">Search</span></a></li>
-                            <li class="nav-item"><a href="register.html" class="nav-link"><span
-                                        class="text-white">Register</span></a></li>
-                            <li class="nav-item"><a href="index.html" class="nav-link"><span
-                                        class="text-white">Login</span></a></li>
-                        </ul>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <%- include('./partials/header'); %>   
     <!-- bradcam_area  -->
     <div class="bradcam_area breadcam_bg_2">
         <div class="container">
@@ -57,7 +27,7 @@
                 <h1 class="header text-center"></h1>
             </div>
             <div style="height: 50px;"></div>
-            <form class="needs-validation m-l-150" novalidate>
+            <form method="POST" action="/register" class="needs-validation m-l-150" novalidate>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
@@ -70,17 +40,17 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationCustomUsername">Gender</label>
-                            <div class="input-group d-flex flex-col">
+                            <div class="input-group d-flex flex-col" >
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="sex"
+                                        id="exampleRadios1" value="male" checked>
                                     <label class="form-check-label" for="gender1">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios2" value="option2">
+                                    <input class="form-check-input" type="radio" name="sex"
+                                        id="exampleRadios2" value="female">
                                     <label class="form-check-label" for="gender2">
                                         Female
                                     </label>
@@ -90,10 +60,10 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationCustomUsername">Password</label>
+                            <label for="validationCustomUsername">My phone</label>
                             <div class="input-group">
-                                <input type="password" style="outline: 1px solid black;" class="form-control"
-                                    id="validationCustomUsername" placeholder="Password" required>
+                                <input name = 'phone' type="tel" style="outline: 1px solid black;" class="form-control"
+                                    id="validationCustomUsername" placeholder="My phone number" required>
                                 <div class="invalid-feedback">
                                     Please fill your password.
                                 </div>
@@ -105,25 +75,51 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom03">Email</label>
                         <input type="email" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom03" placeholder="Email" required>
+                            id="validationCustom03" placeholder="Email" name = "email" required>
                         <div class="invalid-feedback">
                             Please provide a valid email.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="validationCustom04">Date of Birth</label>
-                        <input type="text" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom04" placeholder="Date" required>
+                        <!-- Zip Code -->
+								
+						<label for="validationCustom04">Date of Birth</label>
+						<input  type="date" style="outline: 1px solid black;" class="form-control"
+                                    id="validationCustom04" name = 'birthday'required>
+								
+                    
                         <div class="invalid-feedback">
                             Please provide a valid date.
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-10 mb-3">
-                        <label for="validationCustom05">Prize ( if you have )</label>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom05">Identification Card</label>
                         <input type="text" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom05" placeholder="Prize" required>
+                            id="validationCustom05" placeholder="Email" name = "cmnd" required>
+                        <div class="invalid-feedback">
+                            Please provide a Identification Card.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <!-- Zip Code -->
+								
+						<label for="validationCustom06">select tournaments</label>
+						<input  type="text" style="outline: 1px solid black;" class="form-control"
+                                    id="validationCustom06" name = 'tour'required>
+							
+                        <div class="invalid-feedback">
+                            Please provide a tournament.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-10 mb-3">
+                        <label for="validationCustom07">My address</label>
+                        <input type="text" style="outline: 1px solid black;" class="form-control"
+                            id="validationCustom07" placeholder="My Address" name = 'address' required>
                         <div class="invalid-feedback">
                             Please provide a valid zip.
                         </div>
