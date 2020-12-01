@@ -1,0 +1,19 @@
+.notblock {
+    padding: 50px;
+    border: none !important;
+}
+
+.block {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 1px solid blue !important;
+    border-radius: 15px;
+    text-align: center;
+}
+
+connection {
+    border: 7px solid blue;
+    border-radius: 31px;
+    z-index: -999;
+}
