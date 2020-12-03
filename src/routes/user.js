@@ -11,6 +11,8 @@ const router = express.Router();
 router.post('/login', controllers.login);
 router.get('/login', controllers.getLogin);
 
+router.get('/profile', controllers.getProfile);
+
 router.route('/register')
     .get(controllers.getRegister)
     .post(controllers.postRegister);

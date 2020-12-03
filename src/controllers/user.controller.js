@@ -117,3 +117,9 @@ module.exports.index = (req, res) => {
     
     res.send("haha");
 };
+
+module.exports.getProfile = async(req, res) =>{
+    var info = req.session.user;
+    res.render('inforAthlete.ejs', {info: info});
+
+};
