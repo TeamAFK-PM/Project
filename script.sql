@@ -23,7 +23,7 @@ create table NguoiDung(
 	MatKhau nvarchar(100) not null,
 	HoTen nvarchar(50) not null,
 	VaiTro int not null,
-	NgaySinh datetime not null,
+	NgaySinh date not null,
 	DiaChi nvarchar(50) not null,
 	Email varchar(50),
 	SoDienThoai varchar(20) not null,
@@ -62,7 +62,7 @@ create table TranDau(
 
 create table PhieuDangKy(
 	HoTen nvarchar(50) not null,
-	NgaySinh datetime not null,
+	NgaySinh date not null,
 	DiaChi nvarchar(50) not null,
 	Email varchar(50) primary key,
 	SoDienThoai varchar(20) not null,
