@@ -9,7 +9,8 @@ const cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 const user = require('./routes/user');
-const match = require('./routes/match')
+const match = require('./routes/match');
+const search = require('./routes/search');
 
 
 const app = express();
@@ -58,6 +59,7 @@ app.get('/', (req, res)=> {
 
 app.use('/', user);
 app.use('/', match);
+app.use('/', search);
 
 app.listen(3000, () => {
     console.log(`Sever is listening at port ${3000}`);
