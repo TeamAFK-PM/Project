@@ -12,6 +12,7 @@ router.post('/login', controllers.login);
 router.get('/login', controllers.getLogin);
 
 router.get('/profile', controllers.getProfile);
+router.post('/profile', controllers.updateProfile);
 
 router.route('/register')
     .get(controllers.getRegister)

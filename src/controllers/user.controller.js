@@ -14,13 +14,13 @@ module.exports.getLogin = async (req, res) => {
 module.exports.login = async (req, res) => {
     try{
         
-        console.log(req.body)
+        //console.log(req.body)
         const pool = await poolPromise;
        
         var results = await pool.request()
             .query(`select * from NguoiDung where TenDangNhap = '${req.body.username}'`);
 
-        console.log(results.rowsAffected)
+        //console.log(results.rowsAffected)
         if (results.rowsAffected != 0){
 
             bcrypt.compare(req.body.password, results.recordset[0].MatKhau, function (err, result) {
@@ -33,7 +33,7 @@ module.exports.login = async (req, res) => {
                 if (result == true) {
                     //set session
                     req.session.user = results.recordset[0];
-                    console.log(req.session.user);
+                    //console.log(req.session.user);
                     res.redirect('/');
                 
                 } else {
@@ -119,7 +119,37 @@ module.exports.index = (req, res) => {
 };
 
 module.exports.getProfile = async(req, res) =>{
-    var info = req.session.user;
-    res.render('inforAthlete.ejs', {info: info});
+    const pool = await poolPromise;
+       
+    var results = await pool.request()
+        .query(`select * from NguoiDung where TenDangNhap = '${req.session.user.TenDangNhap}'`);
+    
+    req.session.user = results.recordset[0];
 
+    var info = req.session.user;
+    //var d = new Date(info.NgaySinh);
+    //info.NgaySinh = d.toDateString();
+    //info.NgaySinh = await info.NgaySinh.split('T')[0];
+    res.render('inforAthlete.ejs', {info: info});
+};
+
+module.exports.updateProfile = async(req, res) =>{
+    var user = req.session.user.TenDangNhap;
+    var name = req.body.name;
+    var dob = req.body.dob;
+    var address = req.body.address;
+    var email = req.body.email;
+    var phone = req.body.phone;
+
+    try{
+        const pool = await poolPromise;
+        
+        var result = await pool.request()
+            .query(`update NguoiDung set HoTen = N'${name}', NgaySinh = '${dob}', DiaChi = N'${address}', Email = '${email}', SoDienThoai = '${phone}' where TenDangNhap = '${user}'`);
+    }catch(err){
+        res.status(404);
+        res.send(err.message);
+    }
+
+    this.getProfile(req, res);
 };
