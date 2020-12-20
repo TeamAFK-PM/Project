@@ -7,6 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 var session = require('express-session');
+const paginate = require('express-paginate');
 
 const user = require('./routes/user');
 const match = require('./routes/match');
@@ -15,13 +16,12 @@ const search = require('./routes/search');
 
 const app = express();
 
-
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(paginate.middleware(10, 50));
 app.use(cookieParser());
 
 

@@ -1,6 +1,5 @@
 var sql = require("mssql");
 
-
 const config = {
     user: 'thanh',
     password: '.',
