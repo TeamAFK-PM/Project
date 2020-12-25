@@ -19,10 +19,9 @@ module.exports.getSearch =  async(req, res) =>{
             name.push(results.recordset[i].HoTen);
             brthday.push(results.recordset[i].NgaySinh);
         }
-        var matchedName = name.filter(function(n){
-            return n.toLowerCase().indexOf(nameq.toLowerCase()) !== -1;
-        });
-        console.log(matchedName);
+        var matchedName = await pool.request()
+            .query(`select * from NguoiDung where TenDangNhap = '${req.body.name}'`);
+        console.log(matchedName.recordset);
     }catch(err){
         res.status(404);
         res.send(err.message);
