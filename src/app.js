@@ -11,7 +11,7 @@ const paginate = require('express-paginate');
 
 const user = require('./routes/user');
 const match = require('./routes/match');
-const search = require('./routes/search');
+const player = require('./routes/player');
 
 
 const app = express();
@@ -59,7 +59,7 @@ app.get('/', (req, res)=> {
 
 app.use('/', user);
 app.use('/', match);
-app.use('/', search);
+app.use('/', player);
 
 app.listen(3000, () => {
     console.log(`Sever is listening at port ${3000}`);
