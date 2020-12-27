@@ -1,13 +1,14 @@
 .notblock {
     padding: 50px;
     border: none !important;
+    width: 90px !important;
 }
 
 .block {
-    width: 30px;
+    width: 90px !important;
     height: 30px;
     background: white;
-    border: 1px solid blue !important;
+    border: 2px solid blue !important;
     border-radius: 15px;
     text-align: center;
 }
@@ -16,4 +17,9 @@ connection {
     border: 7px solid blue;
     border-radius: 31px;
     z-index: -999;
+}
+.input-border:hover
+{
+    border: 1px solid black !important;
+    border-radius: 5px;
 }
