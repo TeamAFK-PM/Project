@@ -66,6 +66,8 @@ module.exports.getRegister = async(req, res) =>{
 module.exports.postRegister = async(req, res) => {
 
     const {name, sex, phone, email, birthday, cmnd, tour, address} = req.body;
+
+    const body = req.body;
     console.log(birthday);
     try{
         const pool = await poolPromise;
@@ -76,7 +78,7 @@ module.exports.postRegister = async(req, res) => {
         if (results.rowsAffected != 0){
             
             
-            res.redirect('/register');
+            res.render('register', {newath: body, message: "Email is already exists"});
         }
         else{
             
@@ -86,7 +88,7 @@ module.exports.postRegister = async(req, res) => {
             if (sex == 'male')
                 checksex = 1;
             var result = await pool.request()
-                .query(`INSERT INTO NguoiDung VALUES ('${email}', '${1}', '${name}', '${2}', '${birthday}', '${address}', '${email}', '${phone}', '${checksex}', '${cmnd}', '${0}')`);
+                .query(`INSERT INTO PhieuDangKy VALUES ('${name}', '${birthday}', '${address}', '${email}', '${phone}', '${checksex}', '${cmnd}')`);
         
             
             res.redirect('/');
@@ -153,3 +155,4 @@ module.exports.updateProfile = async(req, res) =>{
 
     this.getProfile(req, res);
 };
+

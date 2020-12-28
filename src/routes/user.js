@@ -26,8 +26,6 @@ router.get('/a', authorize.auth, controllers.index)
 //router.get('/:id', authorize.auth, controllers.index)
 
 
-
-
 module.exports = router;
 
 

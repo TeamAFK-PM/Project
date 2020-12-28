@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Notice - Admin</title>
+  <%- include('./partials/head'); %>
+</head>
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/"><img src="/img/svg_icon/icon-home.png" alt="Home" height="120px"
+            width="120px"></a>
+        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+          data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+  
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav nav ml-auto">
+            <li class="nav-item"><a href="/" class="nav-link"><span>Home</span></a></li>
+            <li class="nav-item"><a href="index.html#About" class="nav-link"><span>About us</span></a></li>
+            <li class="nav-item"><a href="/search" class="nav-link"><span>Search</span></a></li>
+            <li class="nav-item"><a href="/register" class="nav-link"><span>Register</span></a></li>
+            <% if (!locals.session.user) {%>
+							
+							<li class="nav-item"><a href="/register" class="nav-link"><span class = "text-white">Register</span></a></li>
+							<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
+							
+            <%} else {%>
+              
+							<li class="dropdown-acc nav-item "><a href="/profile" class="nav-link"><span ><%= session.user.HoTen%></span></a>
+								<ul role = "menu" class="sub-menu-acc">
+									<li><a href="/profile">Information</a></li>
+									<li><a href="/logout">Log out</a></li>
+								</ul>
+							</li>
+							
+            <%}%>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="container-fluid mt-4">
+    <div class="d-flex" style="height: 30px; justify-content: flex-end;">
+      <b>Login by admin </b>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+
+        <div class="card">
+          <div class="card-header">
+            <h4>Notice</h4>
+          </div>
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+            aria-disabled="true">
+
+              The Lion Tournament 2 days left will take place
+            </a>
+            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+            aria-disabled="true">Dapibus ac facilisis in</a>
+            
+            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+              aria-disabled="true">Vestibulum at eros</a>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">
+            <h4>security</h4>
+          </div>
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action">Manage</a>
+            <a href="#" class="list-group-item list-group-item-action">Change the password</a>
+            
+      
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-9">
+        <div class="card">
+          <h5 class="card-header">Home</h5>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name of athlete</th>
+                  <th scope="col">Tournaments</th>
+                  <th scope="col">Accept</th>
+                  <th scope="col">Refuse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% ath.forEach(function(ath, index){ %>
+                <tr>
+                  <th scope="row"><%= index %></th>
+                  <td><%= ath.HoTen %></td>
+                  <td>Otto</td>
+                  <td><a href = "/admin/accept/<%= ath.Email %>" class="btn btn-outline-success" style = "color: green" >Accept</a></td>
+                  <td><a href = "/admin/refuse/<%= ath.Email %>" class="btn btn-outline-danger" style = "color: red">Refuse</a></td>
+                </tr>
+                <% }); %>
+                
+              </tbody>
+            </table>
+            <button type="button" class="btn btn-primary btn-lg btn-block">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              Add Athlete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- contact_rsvp -->
+  <div class="contact_rsvp">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="text text-center">
+            <h3>Contact AFK Group</h3>
+            <a class="boxed-btn3" href="contact.html">Contact Me</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ contact_rsvp -->
+  <%- include('./partials/footer'); %>
+  
+</body>
+
+</html>

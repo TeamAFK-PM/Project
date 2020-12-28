@@ -12,6 +12,7 @@ const paginate = require('express-paginate');
 const user = require('./routes/user');
 const match = require('./routes/match');
 const player = require('./routes/player');
+const adminRoute = require('./routes/admin')
 
 
 const app = express();
@@ -42,7 +43,9 @@ app.use(express.static('public'));
 
 app.use((req, res, next) => {
     res.locals.session = req.session;
+    res.locals.newath = null;
     res.locals.user = req.session.user;
+    console.log( res.locals.user)
     if ( req.session.user)
         req.session.user.HoTen = req.session.user.HoTen;
 
@@ -60,6 +63,7 @@ app.get('/', (req, res)=> {
 app.use('/', user);
 app.use('/', match);
 app.use('/', player);
+app.use('/admin', adminRoute)
 
 app.listen(3000, () => {
     console.log(`Sever is listening at port ${3000}`);

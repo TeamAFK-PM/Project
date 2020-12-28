@@ -33,9 +33,9 @@
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Full name</label>
                             <input name = "name" type="text" class="form-control" style="outline: 1px solid black;"
-                                id="validationCustom01" placeholder="Full name" required>
+                                id="validationCustom01" placeholder="Full name" <% if( locals.newath ) {%> value="<%= newath.name %>" <% } %> required>
                             <div class="invalid-feedback">
-                                Please fill your name!
+                                Please enter your name.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -43,18 +43,31 @@
                             <div class="input-group d-flex flex-col" >
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="sex"
-                                        id="exampleRadios1" value="male" checked>
+                                        id="exampleRadios1" value="male"
+                                        <% if (locals.newath){
+                                        if(locals.newath.sex == 'male'){%>
+                                            <%= newath.sex %>
+                                            <%="checked"%>
+                                        <%}}%>
+                                        >
                                     <label class="form-check-label" for="gender1">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="sex"
-                                        id="exampleRadios2" value="female">
+                                        id="exampleRadios2" value="female"
+                                        <% if (locals.newath){
+                                        if(locals.newath.sex == 'female'){%>
+                                            <%= newath.sex %>
+                                            <%="checked"%>
+                                        <%}}%>
+                                    >
                                     <label class="form-check-label" for="gender2">
                                         Female
                                     </label>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -63,9 +76,9 @@
                             <label for="validationCustomUsername">My phone</label>
                             <div class="input-group">
                                 <input name = 'phone' type="tel" style="outline: 1px solid black;" class="form-control"
-                                    id="validationCustomUsername" placeholder="My phone number" required>
+                                    id="validationCustomUsername" placeholder="My phone number" <% if(locals.newath) {%> value="<%= newath.phone %>" <% } %> required>
                                 <div class="invalid-feedback">
-                                    Please fill your phone number.
+                                    Please enter your phone number.
                                 </div>
                             </div>
                         </div>
@@ -75,9 +88,9 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom03">Email</label>
                         <input type="email" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom03" placeholder="Email" name = "email" required>
+                            id="validationCustom03" placeholder="Email" name = "email"  <% if(locals.newath) {%> value="<%= newath.email %>" <% } %> class = "email-res" required>
                         <div class="invalid-feedback">
-                            Please provide a valid email.
+                            Incorrect email format. Please re-enter.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -85,11 +98,11 @@
 								
 						<label for="validationCustom04">Date of Birth</label>
 						<input  type="date" style="outline: 1px solid black;" class="form-control"
-                                    id="validationCustom04" name = 'birthday'required>
+                                    id="validationCustom04" <% if(locals.newath) {%> value="<%= newath.birthday %>" <% } %> name = 'birthday'required>
 								
                     
                         <div class="invalid-feedback">
-                            Please provide a valid date.
+                            Please enter your birtday.
                         </div>
                     </div>
                 </div>
@@ -97,9 +110,9 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom05">Identification Card</label>
                         <input type="text" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom05" placeholder="Email" name = "cmnd" required>
+                            id="validationCustom05" placeholder="Email"<% if(locals.newath) {%> value="<%= newath.cmnd %>" <% } %>  name = "cmnd" required>
                         <div class="invalid-feedback">
-                            Please provide a Identification Card.
+                            Please enter a Identification Card.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -110,7 +123,7 @@
                                     id="validationCustom06" name = 'tour'required>
 							
                         <div class="invalid-feedback">
-                            Please provide a tournament.
+                            Please enter a tournament.
                         </div>
                     </div>
                 </div>
@@ -119,9 +132,9 @@
                     <div class="col-10 mb-3">
                         <label for="validationCustom07">My address</label>
                         <input type="text" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom07" placeholder="My Address" name = 'address' required>
+                            id="validationCustom07" placeholder="My Address" <% if(locals.newath) {%> value="<%= newath.address %>" <% } %> name = 'address' required>
                         <div class="invalid-feedback">
-                            Please provide a valid zip.
+                            Please enter your address.
                         </div>
                     </div>
                 </div>
@@ -293,12 +306,12 @@
             var Email = document.forminfo.Email.value;
             var Answer = document.forminfo.Answer.value;
             if (Name === "") {
-                alert('Please fill out your name');
+                alert('Please enter your name.');
                 return false;
             }
             if (validateEmail(Email)) {
                 document.getElementById("warningemail").style.display = "inline";
-                alert('Email phải đúng định dạng địa chỉ email: Please fill out a valid email format');
+                alert('Incorrect email format. Please re-enter.');
                 return false;
             }
             if (String_Ans[random_num] != Answer) {
