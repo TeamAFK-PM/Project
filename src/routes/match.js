@@ -1,13 +1,12 @@
-const express = require('express');
+const express= require('express');
 
-const controllers = require('../controllers/sort.controller');
+var controllers = require('../controllers/matches.controller');
+
 var authorize = require("../middleware/auth")
+
 
 const router = express.Router();
 
-
-router.get('/match', controllers.Sort)
-
-
+router.get('/match', controllers.getMatches);
 
 module.exports = router;

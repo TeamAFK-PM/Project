@@ -38,82 +38,63 @@
     </div>
     <!--/ bradcam_area  -->
     <!-- music_area  -->
-    <%if (search_name.recordset.length > 0) { %>
-        <% for(var i = 0; i < search_name.recordset.length; i++) { %>
-            <div class="music_area music_gallery inc_padding">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center mb-20">
-                        <div class="col-xl-10">
-                            <div class="row align-items-center">
-                                        <div class="col-xl-9 col-md-9">
-                                            <div class="music_field">
-                                                    <div class="thumb">
-                                                            <img src="img/music_man/1.png" alt="">
-                                                        </div>
-                                                        <div class="audio_name">
-                                                            <div class="name">                 
-                                                                <h4><%= search_name.recordset[i].HoTen%></h4>
-                                                                <p><%= search_name.recordset[i].NgaySinh%></p>
-                                                            </div>
-                                                               
-                                                        </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-3">
-                                            <div class="music_btn">
-                                                    <a href="#" class="boxed-btn">More info</a>
-                                            </div>
-                                        </div>
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
-            </div>
-            <% } %>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-lg justify-content-center">
+        <% if(name){ %>
+            <li class="page-item"><a class="page-link" href="/match?vongdau=1&name=<%= name%>">Vòng 16</a></li>
+        <% } else{ %>  
+            <li class="page-item"><a class="page-link" href="/match?vongdau=1%>">Vòng 16</a></li>
         <% } %>
-        <%if (search_name.recordset.length == 0) { %>
-            <% for(var i = start; i < end; i++) { %>
-                <div class="music_area music_gallery inc_padding">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center mb-20">
-                            <div class="col-xl-10">
-                                <div class="row align-items-center">
-                                            <div class="col-xl-9 col-md-9">
-                                                <div class="music_field">
-                                                        <div class="thumb">
-                                                                <img src="img/music_man/1.png" alt="">
-                                                            </div>
-                                                            <div class="audio_name">
-                                                                <div class="name">                 
-                                                                    <h4><%= results.recordset[i].HoTen%></h4>
-                                                                    <p><%= results.recordset[i].NgaySinh%></p>
-                                                                </div>
-                                                                   
-                                                            </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-md-3">
-                                                <div class="music_btn">
-                                                        <a href="#" class="boxed-btn">More info</a>
-                                                </div>
-                                            </div>
-                                </div>
-                            </div>
-            
-                        </div>
-                    </div>
-                </div>
-                <% } %>
-                <ul class="pagination pagination-lg justify-content-center" style="margin:20px 0">
-                    <li class="page-item"><a class="page-link" href="/player?page=1">1</a></li>
-                    <li class="page-item"><a class="page-link" href="/player?page=2">2</a></li>
-                    <li class="page-item"><a class="page-link" href="/player?page=3">3</a></li>
-                    <li class="page-item"><a class="page-link" href="/player?page=4">4</a></li>
-                    <li class="page-item"><a class="page-link" href="/player?page=5">5</a></li>
-                  </ul>
-            <% } %>
-            
+        <% if(name){ %>
+            <li class="page-item"><a class="page-link" href="/match?vongdau=2&name=<%= name%>">Vòng 8</a></li>
+        <% } else{ %>  
+            <li class="page-item"><a class="page-link" href="/match?vongdau=2%>">Vòng 8</a></li>
+        <% } %>
+        <% if(name){ %>
+            <li class="page-item"><a class="page-link" href="/match?vongdau=3&name=<%= name%>">Tứ Kết</a></li>
+        <% } else{ %>  
+            <li class="page-item"><a class="page-link" href="/match?vongdau=3%>">Tứ Kết</a></li>
+        <% } %>
+        <% if(name){ %>
+            <li class="page-item"><a class="page-link" href="/match?vongdau=4&name=<%= name%>">Bán Kết</a></li>
+        <% } else{ %>  
+            <li class="page-item"><a class="page-link" href="/match?vongdau=4%>">Bán Kết</a></li>
+        <% } %>
+        <% if(name){ %>
+            <li class="page-item"><a class="page-link" href="/match?vongdau=5&name=<%= name%>">Chung Kết</a></li>
+        <% } else{ %>  
+            <li class="page-item"><a class="page-link" href="/match?vongdau=5%>">Chung Kết</a></li>
+        <% } %>
+        </ul>
+      </nav>
+      <div>
+        <div class="bg-white rounded-lg shadow p-4">
+          <!-- Progress bar 1 -->
+          <!-- END -->
+
+          <!-- Demo info -->
+          <% for(var i = 0; i < results.recordset.length; i++) { %>
+          <div class="row text-center " style="width : px; margin-left: 0px !important;">
+            <div class="col-6 border-right">
+              <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
+                class="figure float-left">
+              <div class="h4 font-weight-bold figure"><%= results.recordset[i].HoTen1%></div>
+              <div style="height: 25px;"></div>
+              <div class="h4 font-weight-bold">0</div>
+            </div>
+            <div class="col-6 border-left">
+              <div class="float-left figure">
+                <div class="h4 font-weight-bold figure"><%= results.recordset[i].HoTen2%></div>
+                <div style="height: 25px;"></div>
+                <div class="h4 font-weight-bold">0</div>
+              </div>
+              <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px" class = "figure float-right">
+            </div>
+          </div>
+          <div style="height: 20px;"></div>
+          <% } %>
+        </div>
+          <!-- END -->
     <!-- contact_rsvp -->
     <div class="contact_rsvp">
         <div class="container">
