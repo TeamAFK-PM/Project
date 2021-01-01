@@ -2,6 +2,7 @@ const randomstring = require("randomstring");
 
 const {hash} = require("../middleware/auth")
 const { poolPromise, sql } = require('../config/db')
+const {sendEmail} = require("../config/nodemailer")
 
 
 module.exports.getManage = async (req, res) =>{
@@ -42,18 +43,19 @@ module.exports.postAccept = async (req, res) =>{
             length: 6
           });
 
-        console.log(passNewAth);
+        let passAth = passNewAth;
         passNewAth = await hash(passNewAth);
-       
-
-        //(TenDangNhap, MatKhau, HoTen, VaiTro, NgaySinh, DiaChi, Email, SoDienThoai, GioiTinh, CMND, IsVerify)
+       console.log(passNewAth, passAth)
+        
+        
         var newath = await pool1.request()
             .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '${2222-12-03}', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1)` )
         
         var deleteAuth = await pool.request()
             .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
         
-          
+        
+        sendEmail(req, email, {email: email, passNewAth: passAth} , 'SendAccount');
         
         res.redirect("/admin/manage");
 

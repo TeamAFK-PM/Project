@@ -25,8 +25,8 @@
             <li class="nav-item"><a href="/register" class="nav-link"><span>Register</span></a></li>
             <% if (!locals.session.user) {%>
 							
-							<li class="nav-item"><a href="/register" class="nav-link"><span class = "text-white">Register</span></a></li>
-							<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
+					
+							<li class="nav-item"><a href="/login" class="nav-link"><span >Login</span></a></li>
 							
             <%} else {%>
               
@@ -91,8 +91,8 @@
                   <th scope="col">#</th>
                   <th scope="col">Name of athlete</th>
                   <th scope="col">Tournaments</th>
-                  <th scope="col">Accept</th>
-                  <th scope="col">Refuse</th>
+                  <th scope="col" >Accept</th>
+                  <th scope="col" >Refuse</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,8 +101,8 @@
                   <th scope="row"><%= index %></th>
                   <td><%= ath.HoTen %></td>
                   <td>Otto</td>
-                  <td><a href = "/admin/accept/<%= ath.Email %>" class="btn btn-outline-success" style = "color: green" >Accept</a></td>
-                  <td><a href = "/admin/refuse/<%= ath.Email %>" class="btn btn-outline-danger" style = "color: red">Refuse</a></td>
+                  <td><a href = "/admin/accept/<%= ath.Email %>" class="btn btn-outline-success accept-ath" style = "color: green" >Accept</a></td>
+                  <td><a href = "/admin/refuse/<%= ath.Email %>" class="btn btn-outline-danger refuse-ath" style = "color: red">Refuse</a></td>
                 </tr>
                 <% }); %>
                 
