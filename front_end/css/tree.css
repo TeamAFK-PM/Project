@@ -14,9 +14,11 @@
 }
 
 connection {
-    border: 7px solid blue;
+    border: 2px solid black;
     border-radius: 31px;
     z-index: -999;
+   
+    
 }
 .input-border:hover
 {
