@@ -2,218 +2,408 @@
 <html lang="en">
 
 <head>
-	<title>Login V2</title>
-	
-	<%- include('./partials/head'); %>
+  <title>Login V2</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/Home.png" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css/util.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!--===============================================================================================-->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/themify-icons.css">
+  <link rel="stylesheet" href="css/nice-select.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/ioniconss.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/gijgo.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/slicknav.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/ioniconss.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
-<body class="main-background">
-    <%- include('./partials/header'); %>  
-	<div class="limiter">
-		<div class="container-login100" style="background: none;">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST" action = "/login">
-					<span class="login100-form-title p-b-26">
-						Welcome to Tennis Tournament
+<body>
+  <div class="container-dropdown" style="height: 82px; background-color: none !important;">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target ftco-navbar-dark"
+      id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./img/svg_icon/icon-home.png" alt="Home" height="120px"
+            width="120px"></a>
+        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
+          data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav nav ml-auto text-white">
+            <ul class="navbar-nav nav ml-auto">
+              <li class="nav-item"><a href="index.html" class="nav-link"><span class="text-white">Home</span></a></li>
+              <li class="nav-item"><a href="index.html#About" class="nav-link"><span class="text-white">About
+                    us</span></a></li>
+              <li class="nav-item"><a href="search.html" class="nav-link"><span class="text-white">Search</span></a>
+              </li>
+              <li class="nav-item"><a href="register.html" class="nav-link"><span class="text-white">Register</span></a>
+              </li>
+              <li class="nav-item"><a href="index.html" class="nav-link"><span class="text-white">Login</span></a></li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div style="height: 100px;">
+  </div>
+  <div>
+    <h1 class="text-center"> Rank athletes</h1>
+
+    <div class="music_area music_gallery inc_padding">
+      <div class="container">
+        <div class="row align-items-center justify-content-center mb-20">
+          <div class="col-xl-10">
+            <div class="row align-items-center">
+              <div class="col-xl-9 col-md-9">
+                <div class="music_field">
+                  <div class="thumb">
+                    <img src="img/vang.jpg" alt="">
+                  </div>
+                  <div class="thumb">
+                    <img src="img/music_man/1.png" alt="">
+                  </div>
+                  <div class="audio_name">
+                    <div class="name">
+                      <h4>Federer</h4>
+                      <p>Number of matches won:30</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3">
+                <div class="music_btn">
+                  <a href="#" class="boxed-btn">More info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row align-items-center justify-content-center mb-20">
+          <div class="col-xl-10">
+            <div class="row align-items-center">
+              <div class="col-xl-9 col-md-9">
+                <div class="music_field">
+                  <div class="thumb"style="margin-left: 20px;">
+                    <img src="img/bac2.png" alt="">
+                  </div>
+                  <div class="thumb" style="margin-left: 30px;">
+                    <img src="img/music_man/2.png" alt="">
+                  </div>
+                  <div class="audio_name">
+                    <div class="name">
+                      <h4>Ronaldo</h4>
+                      <p>Number of matches won: 20</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3">
+                <div class="music_btn">
+                  <a href="#" class="boxed-btn">More info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row align-items-center justify-content-center mb-20">
+          <div class="col-xl-10">
+            <div class="row align-items-center">
+              <div class="col-xl-9 col-md-9">
+                <div class="music_field">
+                  <div class="thumb" style="margin-left: 20px;">
+                    <img src="img/dong.png" alt="">
+                  </div>
+                  <div class="thumb" style="margin-left: 30px;">
+                    <img src="img/music_man/3.png" alt="">
+                  </div>
+                  <div class="audio_name">
+                    <div class="name">
+                      <h4>Messi</h4>
+                      <p>Number of matches won: 19</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-md-3">
+                <div class="music_btn">
+                  <a href="#" class="boxed-btn">More info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row align-items-center justify-content-center mb-20">
+            <div class="col-xl-10">
+              <div class="row align-items-center">
+                <div class="col-xl-9 col-md-9">
+                  <div class="music_field">
+                    <div class="thumb" style="margin-left: 200px;">
+                      <img src="img/music_man/2.png" alt="">
+                    </div>
+                    <div class="audio_name">
+                      <div class="name">
+                        <h4>Ronaldo</h4>
+                        <p>Number of matches won:16</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                  <div class="music_btn">
+                    <a href="#" class="boxed-btn">More info</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+       
+      </div>
+      <nav aria-label="..." style="margin-top: 35px; margin-left: 550px;">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+        <div class="limiter">
+          <h1 class="text-center">Some tournament's avaible</h1>
+          <div class="container">
+            <div id="slider" class="owl-carousel">
+              <div class="content-area">
+                <a href="#">
+                  <img src="./img/elements/f1.jpg" alt="" class="wh-300">
+                  <span class="custom-overlay">
+                    <span class="content-text">
+                      <h4>Player with 4 year of experience</h4>
+                      <h3>Have 3 price</h3>
+                      <p>10 October, 1997</p>
                     </span>
-                    
-                    <%if (locals.err) { %>
-                      
-                   
-                        <!-- Modal -->
-                        
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="false">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Login failed </h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                    <%= err %>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                    <% } %>
-					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="username" required>
-                        <span class="focus-input100" data-placeholder="Username"></span>
-                        <div class="invalid-feedback">
-                            Please fill your username.
-                        </div>
-					</div>
+                  </span>
+                </a>
+              </div>
+              <div class="content-area">
+                <a href="#">
+                  <img src="./img/elements/f2.jpg" alt="" class="wh-300">
+                  <span class="custom-overlay">
+                    <span class="content-text">
+                      <h4>Tournament X</h4>
+                      <h3>1.5 bilion dolar</h3>
+                      <p>10 October, 1997</p>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div class="content-area">
+                <a href="#">
+                  <img src="./img/elements/f3.jpg" alt="" class="wh-300">
+                  <span class="custom-overlay">
+                    <span class="content-text">
+                      <h4>Tournament H</h4>
+                      <h3>one bilion dolar</h3>
+                      <p>10 October, 1997</p>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div class="content-area">
+                <a href="#">
+                  <img src="./img/elements/f4.jpg" alt="" class="wh-300">
+                  <span class="custom-overlay">
+                    <span class="content-text">
+                      <h4>Tournament B</h4>
+                      <h3>1.5 milion dolar</h3>
+                      <p>10 October, 1997</p>
+                    </span>
+                  </span>
+                </a>
+              </div>
+              <div class="content-area">
+                <a href="#">
+                  <img src="./img/elements/f5.jpg" alt="" class="wh-300">
+                  <span class="custom-overlay">
+                    <span class="content-text">
+                      <h4>Tournament A</h4>
+                      <h3>one milion dolar</h3>
+                      <p>10 October, 1997</p>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 25px;" id="About"></div>
+        <section class="ftco-section ftco-about">
+          <div class="container" style="width: 1000px; height: 400px;">
+            <div>
+              <h1 class="header">About us</h1>
+            </div>
+            <div class="image-description">
+              <img src="..." alt="logo-team">
+            </div>
+            <div class="description">
+              <p class="some-descrip">Friendship is both good and necessary. Man cannot live all alone. He is a social
+                being. He needs
+                someone to share his joys and sorrows. Generally, it is only people of similar age, character and
+                background, mentality, etc., who can understand him and his problems. Friends are needed for support
+                and for sharing.</p>
+              <p class="some-descrip">There are many different types of friendships. Most people find friends at a
+                very young age however
+                it is harder for others. Many movies are based off of a group of friends. An example of a friendship
+                would be that of Sierra, Olivia, Emma, Langli, and Mallory's in the movie Eight grade Whittier.</p>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" name="password" required>
-                        <span class="focus-input100" data-placeholder="Password"></span>
-                        <div class="invalid-feedback">
-                            Please fill your password.
-                        </div>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" >
-								Login
-							</button>
-						</div>
-					</div>
-
-
-					<div class="text-center p-t-115">
-						<span class="txt1">
-							Don’t have an account?
-						</span>
-
-						<a class="txt2" href="/register">
-							Sign Up
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-    </div>
-    <div style="height: 25px;"  id="About"></div>
-	<section class="ftco-section ftco-about">
-		<div class="container" style = "width: 1000px; height: 400px;">
-			<div>
-				<h1 class="header">About us</h1>
-			</div>
-			<div class="image-description">
-				<img src="../Tennis_Tournament/images/img07.jpg" alt="logo-team">
-			</div>
-			<div class="description">
-				<p class="some-descrip">Friendship is both good and necessary. Man cannot live all alone. He is a social
-					being. He needs
-					someone to share his joys and sorrows. Generally, it is only people of similar age, character and
-					background, mentality, etc., who can understand him and his problems. Friends are needed for support
-					and for sharing.</p>
-				<p class="some-descrip">There are many different types of friendships. Most people find friends at a
-					very young age however
-					it is harder for others. Many movies are based off of a group of friends. An example of a friendship
-					would be that of Sierra, Olivia, Emma, Langli, and Mallory's in the movie Eight grade Whittier.</p>
-
-			</div>
-		</div>
-	</section>
-	<!-- contact_rsvp -->
-    <div class="contact_rsvp">
-        <div class="container">
+            </div>
+          </div>
+        </section>
+        <!-- contact_rsvp -->
+        <div class="contact_rsvp">
+          <div class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="text text-center">
-                        <h3>Contact AFK Group</h3>
-                        <a class="boxed-btn3" href="contact.html">Contact Me</a>
-                    </div>
+              <div class="col-xl-12">
+                <div class="text text-center">
+                  <h3>Contact AFK Group</h3>
+                  <a class="boxed-btn3" href="contact.html">Contact Me</a>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    <!--/ contact_rsvp -->
+        <!--/ contact_rsvp -->
 
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer_top">
+        <!-- footer start -->
+        <footer class="footer">
+          <div class="footer_top">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                            <div class="footer_widget">
-                                    <h3 class="footer_title">
-                                            Services
-                                    </h3>
-                                <div class="subscribe-from">
-                                        <form action="#">
-                                                <input type="text" placeholder="Enter your feedback">
-                                                <button type="submit" >Send</button>
-                                            </form>
-                                </div>
-                                <p class="sub_text">Please send us feedback if you have any questions for us.</p>
-                                </div>
+              <div class="row">
+                <div class="col-xl-6 col-md-6">
+                  <div class="footer_widget">
+                    <h3 class="footer_title">
+                      Services
+                    </h3>
+                    <div class="subscribe-from">
+                      <form action="#">
+                        <input type="text" placeholder="Enter your feedback">
+                        <button type="submit">Send</button>
+                      </form>
                     </div>
-                    <div class="col-xl-5 col-md-5 offset-xl-1">
-                        <div class="footer_widget">
-                                <h3 class="footer_title">
-                                        Contact Us
-                                </h3>
-                            <ul>
-                                <li><a href="#">AFKTeam@support.com
-                                    </a></li>
-                                <li><a href="#">+84123456789
-                                    </a></li>
-                                <li><a href="#">Dormitory zone B, Di An, Binh Duong</a></li>
-                            </ul>
-                            <div class="socail_links">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <i class=" fa fa-facebook "></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-youtube-play"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <p class="sub_text">Please send us feedback if you have any questions for us.</p>
+                  </div>
+                </div>
+                <div class="col-xl-5 col-md-5 offset-xl-1">
+                  <div class="footer_widget">
+                    <h3 class="footer_title">
+                      Contact Us
+                    </h3>
+                    <ul>
+                      <li><a href="#">AFKTeam@support.com
+                        </a></li>
+                      <li><a href="#">+84123456789
+                        </a></li>
+                      <li><a href="#">Dormitory zone B, Di An, Binh Duong</a></li>
+                    </ul>
+                    <div class="socail_links">
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <i class=" fa fa-facebook "></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="fa fa-google-plus"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="fa fa-twitter"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="fa fa-youtube-play"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="fa fa-instagram"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
 
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="copy-right_text">
+          </div>
+          <div class="copy-right_text">
             <div class="container" style="margin-top:0px !important">
-                <div class="footer_border"></div>
-                <div class="row">
-                    <div class="col-xl-7 col-md-6">
-                        <p class="copy_right">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                    <div class="col-xl-5 col-md-6">
-                        <div class="footer_links">
-                            <ul>
-                                <li><a href="#">home</a></li>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">tracks</a></li>
-                                <li><a href="#">blog</a></li>
-                                <li><a href="#">contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
+              <div class="footer_border"></div>
+              <div class="row">
+                <div class="col-xl-7 col-md-6">
+                  <p class="copy_right">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved </a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                  </p>
                 </div>
+                <div class="col-xl-5 col-md-6">
+                  <div class="footer_links">
+                    <ul>
+                      <li><a href="#">home</a></li>
+                      <li><a href="#">about</a></li>
+                      <li><a href="#">tracks</a></li>
+                      <li><a href="#">blog</a></li>
+                      <li><a href="#">contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    </footer>
-    <!--/ footer end  -->
+          </div>
+        </footer>
+        <!--/ footer end  -->
 </body>
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
 <script src="js/vendor/jquery-1.12.4.min.js"></script>
@@ -252,6 +442,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="js/scrollax.min.js"></script>
 
 <script src="js/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<script>
+  $('#slider').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    autoplay: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      }
+    }
+  })
+</script>
 
 <script src="js/contact.js"></script>
 <script src="js/jquery.ajaxchimp.min.js"></script>
@@ -259,12 +471,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/mail-script.js"></script>
 
-<script src="js/main.js"></script>
-
-<script type="text/javascript">
-    $(window).on('load',function(){
-        $('#exampleModal').modal('show');
-    });
-</script>
+<!--<script src="js/main.js"></script>-->
 
 </html>
