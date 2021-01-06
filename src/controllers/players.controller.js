@@ -23,3 +23,24 @@ module.exports.getPlayers =  async(req, res) =>{
     }
     res.render('Players.ejs', {results: results, start: start, end: end, search_name: search_name});
 }
+
+module.exports.getInforPlayer =  async(req, res) =>{
+    var name = req.query.name;
+
+    try{
+        const pool = await poolPromise;
+        const pool1 = await poolPromise;
+        
+        var results = await pool.request()
+            .query(`select * from NguoiDung where HoTen = N'${name}'`);
+
+        var result = results.recordset[0];
+        }catch(err){
+        res.status(404);
+        res.send(err.message);
+    }
+
+    console.log(result);
+
+    res.render('inforAthlete.ejs', {result: result});
+}

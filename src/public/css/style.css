@@ -2019,7 +2019,7 @@ h3 {
   margin-top: 0;
   padding-bottom: 50px;
   border-bottom: 1px solid #EFEFEF;
-  padding-top: 5px;
+  padding-top: 145px;
   background: #fff;
 }
 
@@ -2040,8 +2040,7 @@ h3 {
 
 /* line 206, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_area.music_gallery.inc_padding {
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 130px;
 }
 
 @media (max-width: 767px) {
@@ -7323,7 +7322,3 @@ h6 {
 }
 
 /*# sourceMappingURL=style.css.map */
-
-
-
-

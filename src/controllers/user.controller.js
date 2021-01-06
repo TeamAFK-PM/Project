@@ -13,7 +13,7 @@ module.exports.getLogin = async (req, res) => {
     error = req.session.err;
     delete req.session.err;
     
-    res.render("index.ejs", {err: error});
+    res.render("login.ejs", {err: error});
    
 }
 
