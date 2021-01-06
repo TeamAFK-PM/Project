@@ -440,3 +440,13 @@ $(function() {
 
 });
 
+$(".accept-ath").click(function (e) {
+	const re = confirm("Are you sure to accept this athlete to participate in this tournament?");
+		if (re == false) return false;
+		$(this).parent().parent().css("display", "none");
+	});
+	$(".refuse-ath").click(function (e) {
+	const re = confirm("Are you sure to refuse this athlete to participate in this tournament?");
+		if (re == false) return false;
+		$(this).parent().parent().css("display", "none");
+	}); 
