@@ -67,30 +67,46 @@
         <% } %>
         </ul>
       </nav>
-      <div>
-        <div class="bg-white rounded-lg shadow p-4">
+      <div style="display: block;
+      margin-left: auto;
+      margin-right: auto ">
           <!-- Progress bar 1 -->
           <!-- END -->
 
           <!-- Demo info -->
           <% for(var i = 0; i < results.recordset.length; i++) { %>
-          <div class="row text-center " style="width : px; margin-left: 0px !important;">
-            <div class="col-6 border-right">
-              <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                class="figure float-left">
-              <div class="h4 font-weight-bold figure"><%= results.recordset[i].HoTen1%></div>
-              <div style="height: 25px;"></div>
-              <div class="h4 font-weight-bold">0</div>
-            </div>
-            <div class="col-6 border-left">
-              <div class="float-left figure">
-                <div class="h4 font-weight-bold figure"><%= results.recordset[i].HoTen2%></div>
-                <div style="height: 25px;"></div>
-                <div class="h4 font-weight-bold">0</div>
-              </div>
-              <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px" class = "figure float-right">
-            </div>
-          </div>
+                <div class="bg-white rounded-lg shadow p-4" style="width : 1150px; margin-left: 150px !important;">
+                  <!-- Progress bar 1 -->
+                  <!-- END -->
+
+                  <!-- Demo info -->
+                  <div class="row text-center mt-4" style="width : 1100px; margin-left: 0px !important;">
+                    <div class="col-6 border-right">
+                      <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
+                        class="figure float-left">
+                      <div class="h4 font-weight-bold figure"><%= results.recordset[i].HoTen1%></div>
+                      <div style="height: 25px;"></div>
+                      <% if(results.recordset[i].KQ == results.recordset[i].CT1){ %>
+                        <div class="h4 font-weight-bold" style="color: red;">Thắng</div>
+                    <% } else{ %>  
+                        <div class="h4 font-weight-bold">Thua</div>
+                    <% } %>
+                    </div>
+                    <div class="col-6 border-left">
+                      <div class="float-left figure">
+                        <div class="h4 font-weight-bold figure" style="margin-left: 80px"><%= results.recordset[i].HoTen2%></div>
+                        <div style="height: 25px;"></div>
+                        <% if(results.recordset[i].KQ == results.recordset[i].CT2){ %>
+                            <div class="h4 font-weight-bold" style="margin-left: 80px; color: red;">Thắng</div>
+                        <% } else{ %>  
+                            <div class="h4 font-weight-bold" style="margin-left: 80px">Thua</div>
+                        <% } %>
+                      </div>
+                      <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px" class = "figure float-right">
+                    </div>
+                  </div>
+                  <!-- END -->
+                </div>
           <div style="height: 20px;"></div>
           <% } %>
         </div>
@@ -109,7 +125,7 @@
         </div>
     </div>
     <!--/ contact_rsvp -->
-
+    </div>
     <!-- footer start -->
     <footer class="footer">
         <div class="footer_top">
