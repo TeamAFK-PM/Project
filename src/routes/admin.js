@@ -11,5 +11,7 @@ router.get("/manage", adminController.getManage);
 
 router.get("/accept/:id", adminController.postAccept);
 router.get("/refuse/:id", adminController.postConfuse);
+router.get("/match", adminController.getMatch);
+
 
 module.exports = router;

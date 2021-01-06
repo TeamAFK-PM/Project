@@ -33,7 +33,7 @@ module.exports.postAccept = async (req, res) =>{
 
         const pool = await poolPromise;
         const pool1 = await poolPromise;
-
+        const pool2 = await poolPromise;
         var athlete = await pool.request()
             .query(`SELECT * FROM PhieuDangKy WHERE email = '${email}'`);
         
@@ -43,15 +43,16 @@ module.exports.postAccept = async (req, res) =>{
             length: 6
           });
 
+        let passReset = passNewAth;
         let passAth = passNewAth;
         passNewAth = await hash(passNewAth);
-       console.log(passNewAth, passAth)
+          
         
-        
+              
         var newath = await pool1.request()
-            .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '${2222-12-03}', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1)` )
+            .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '7-4-2000', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1, '${passReset}')` )
         
-        var deleteAuth = await pool.request()
+        var deleteAuth = await pool2.request()
             .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
         
         
@@ -80,5 +81,27 @@ module.exports.postConfuse = async (req, res) =>{
         res.status(404)
             .send(err);
     }
+
+}
+
+module.exports.getMatch = async (req, res, next) =>{
+
+    res.render("tree");
+}
+
+module.exports.postMatch = async (req, res, next) =>{
+
+    const {nameOfTour, dateTour, des} = req.body;
+
+   try{
+        const pool = await poolPromise;
+        //var tour = await pool.request()
+        //.query(`SELECT * FROM GiaiDau WHERE `)
+
+        
+   }catch(err){
+    res.status(404)
+    .send(err);
+   }
 
 }

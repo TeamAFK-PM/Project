@@ -45,7 +45,7 @@ app.use((req, res, next) => {
     res.locals.session = req.session;
     res.locals.newath = null;
     res.locals.user = req.session.user;
-    console.log( res.locals.user)
+ 
     if ( req.session.user)
         req.session.user.HoTen = req.session.user.HoTen;
 

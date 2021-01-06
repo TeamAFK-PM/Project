@@ -1,5 +1,11 @@
 const bcrypt = require('bcrypt');
 const { poolPromise } = require('../config/db')
+const jwt =  require('jsonwebtoken')
+const randomstring = require("randomstring");
+const {sendEmail} = require("../config/nodemailer")
+
+const tokenLife = process.env.TOKEN_LIFE
+const jwtKey = process.env.JWT_KEY
 
 
 module.exports.getLogin = async (req, res) => {
@@ -155,4 +161,156 @@ module.exports.updateProfile = async(req, res) =>{
 
     this.getProfile(req, res);
 };
+
+module.exports.getforgot = async (req, res, next) =>{
+
+
+    res.render("forgot")
+}
+
+module.exports.getCheckForgot = async (req, res, next) =>{
+
+
+    const { token} = req.params;
+    const message2 = req.session.message2 || null;
+
+    delete req.session.message2;
+    res.render('checkforgot', {
+        token: token, 
+        message2: message2
+    });
+}
+
+module.exports.getReset = async (req, res, next) =>{
+
+
+    const { token} = req.params;
+    res.render("resetPassword", {
+        token
+    })
+}
+
+module.exports.postForgot = async (req, res) =>{
+
+    try{
+
+        const pool = await poolPromise;
+        
+        var user = await pool.request()
+        .query(`SELECT * FROM NguoiDung WHERE TenDangNhap = '${req.body.email}'`)
+        
+        if (user.rowsAffected != 0){
+
+            const token = jwt.sign( {email: user.recordset[0].Email}, jwtKey, {
+                    expiresIn: 86400,
+            });
+           
+            sendEmail(req, user.recordset[0].Email, user.recordset[0].passwordReset, 'recovery');
+       
+    
+            res.redirect('checkforgot/' + token);
+        }
+    }catch (error) {
+        res.status(404).json({
+           error
+        })
+    }
+}
+
+module.exports.forgot = async (req, res) => {
+
+    const { token} = req.params;
+    const code = req.body.code;
+  
+    if(!token){
+        return res.status(404).json({
+            msg: 'Invalid!'
+        })
+    }
+
+
+    try {
+        
+        const decoded = jwt.verify(token, jwtKey)
+        const {email} = decoded;
+        
+        const pool = await poolPromise;
+        var user = await pool.request()
+        .query(`SELECT * FROM NguoiDung WHERE Email = '${email}'`)
+       
+            
+        if (code == user.recordset[0].passwordReset){
+
+                   
+                    
+            //sinh ma xac nhan
+            let confirmPass = randomstring.generate({
+                length: 6
+              });
+           
+
+            var newath = await pool.request()
+            .query(`UPDATE NguoiDung SET passwordReset = '${confirmPass}' WHERE TenDangNhap = '${email}'` )
+        
+            res.redirect("/resetPassword/" + token);
+        }
+        else{
+            req.session.message2 = 'This code does not match';
+            res.redirect("/checkforgot/" + token);
+
+        }
+        
+
+
+    }catch (error) {
+        res.status(404).json({
+           error
+        })
+    }
+
+}
+
+module.exports.postResetPassword = async (req, res) =>{
+
+    const { token} = req.params;
+
+    if(!token){
+        return res.status(404).json({
+            msg: 'Invalid!'
+        })
+    }
+
+    try{
+        
+        const decoded = jwt.verify(token, jwtKey)
+        const {email} = decoded;
+        const {password, password2} = req.body;
+
+        const pool = await poolPromise;
+        var user = await pool.request()
+        .query(`SELECT * FROM NguoiDung WHERE Email = '${email}'`)
+
+        
+        
+        if (user.rowsAffected != 0){
+            bcrypt.hash(req.body.password, bcrypt.genSaltSync(10),  async(err, hashPass) =>{ //Mã hóa mật khẩu trước khi lưu vào db
+               
+                
+                
+            
+                var newath = await pool.request()
+                .query(`UPDATE NguoiDung SET MatKhau = '${hashPass}' WHERE TenDangNhap = '${email}'` )
+                
+                
+                        
+                res.redirect('/login');
+            })
+        }
+    }catch(err){
+        res.status(404).json({
+            err
+        })
+    }
+}
+
 

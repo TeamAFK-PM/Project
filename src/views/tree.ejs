@@ -5,13 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
   <%- include('./partials/head'); %>
-  
 
 </head>
 
 <body class="bradcam_area breadcam_bg_2" style="padding:0px !important ;">
-    <%- include('./partials/header'); %>  
+  <%- include('./partials/header'); %>
+
+
 
   <div class="bradcam_area breadcam_bg_2">
     <div class="container">
@@ -29,21 +33,21 @@
   <div class="d-flex justify-content-around input-group" style="margin-top:50px ;">
     <div>
       <h4>Name of tournament : </h4>
-      <input type="text" name="" id="" class="form-control input-border" placeholder="Name" />
+      <input type="text" name="nameOfTour" id="" class="form-control input-border" placeholder="Name" />
     </div>
     <div>
       <h4>Start date : </h4>
-      <input type="text" name="" id="datepicker" class="form-control input-border"
+      <input type="text" name="dateTour" id="datepicker" class="form-control input-border"
         style="border: 1px solid rgb(109, 109, 109) !important; border-radius: 5px; height: 40px !important;" />
     </div>
   </div>
   <div class="input-group-lg">
     <h4>Description
     </h4>
-    <input type="text" class="form-control input-border" style="height: 100px !important; font-size: small;">
+    <input type="text" name = "des" class="form-control input-border" style="height: 100px !important; font-size: small;">
   </div>
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
-    <h1 style="text-align: center;">Bảng A</h1>
+    <h1 style="text-align: center;">Table A</h1>
     <table class="table">
       <tr>
         <td class="notblock"></td>
@@ -114,14 +118,11 @@
         <td id="15A" class="block">example</td>
       </tr>
     </table>
-    <div class="d-flex justify-content-around">
-      <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
-      <button type="button" class="btn btn-primary btn-lg">Save</button>
-    </div>
+    
   </div>
 
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
-    <h1 style="text-align: center;">Bảng B</h1>
+    <h1 style="text-align: center;">Table B</h1>
     <table class="table">
       <tr>
         <td class="notblock"></td>
@@ -192,14 +193,11 @@
         <td id="15B" class="block">example</td>
       </tr>
     </table>
-    <div class="d-flex justify-content-around">
-      <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
-      <button type="button" class="btn btn-primary btn-lg">Save</button>
-    </div>
+    
   </div>
 
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
-    <h1 style="text-align: center;">Bảng C</h1>
+    <h1 style="text-align: center;">Table C</h1>
     <table class="table">
       <tr>
         <td class="notblock"></td>
@@ -270,14 +268,11 @@
         <td id="15C" class="block">example</td>
       </tr>
     </table>
-    <div class="d-flex justify-content-around">
-      <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
-      <button type="button" class="btn btn-primary btn-lg">Save</button>
-    </div>
+    
   </div>
 
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
-    <h1 style="text-align: center;">Bảng D</h1>
+    <h1 style="text-align: center;">Table D</h1>
     <table class="table">
       <tr>
         <td class="notblock"></td>
@@ -348,14 +343,11 @@
         <td id="15D" class="block">example</td>
       </tr>
     </table>
-    <div class="d-flex justify-content-around">
-      <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
-      <button type="button" class="btn btn-primary btn-lg">Save</button>
-    </div>
+    
   </div>
 
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
-    <h1 style="text-align: center;">Bán kết và Chung Kết</h1>
+    <h1 style="text-align: center;">Final</h1>
     <table class="table">
       <tr>
         <td class="notblock"></td>
@@ -389,6 +381,7 @@
       <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
       <button type="button" class="btn btn-primary btn-lg">Save</button>
     </div>
+    <div style="height: 60px;"></div>
   </div>
   <!-- contact_rsvp -->
   <div class="contact_rsvp">
@@ -498,49 +491,49 @@
       </div>
     </div>
   </footer>
-  <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-  <script src="js/vendor/jquery-1.12.4.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/isotope.pkgd.min.js"></script>
-  <script src="js/ajax-form.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/imagesloaded.pkgd.min.js"></script>
-  <script src="js/audioplayer.js"></script>
-  <script src="js/scrollIt.js"></script>
-  <script src="js/jquery.scrollUp.min.js"></script>
-  <script src="js/wow.min.js"></script>
-  <script src="js/nice-select.min.js"></script>
-  <script src="js/jquery.slicknav.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/gijgo.min.js"></script>
-  <script src="js/slick.min.js"></script>
+  <script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/isotope.pkgd.min.js"></script>
+  <script src="/js/ajax-form.js"></script>
+  <script src="/js/waypoints.min.js"></script>
+  <script src="/js/jquery.counterup.min.js"></script>
+  <script src="/js/imagesloaded.pkgd.min.js"></script>
+  <script src="/js/audioplayer.js"></script>
+  <script src="/js/scrollIt.js"></script>
+  <script src="/js/jquery.scrollUp.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/nice-select.min.js"></script>
+  <script src="/js/jquery.slicknav.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/plugins.js"></script>
+  <script src="/js/gijgo.min.js"></script>
+  <script src="/js/slick.min.js"></script>
 
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/js/jquery.magnific-popup.min.js"></script>
-  <script src="js/js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/scrollax.min.js"></script>
   <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
-  <script src="js/js/main.js"></script>
+  <script src="/js/js/main.js"></script>
 
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
+  <script src="/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/js/jquery.form.js"></script>
+  <script src="/js/jquery.validate.min.js"></script>
+  <script src="/js/mail-script.js"></script>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -550,105 +543,195 @@
     datepicker.appendTo('#datepicker');
   </script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="js/jquery.connections.js"></script>
+  <script src="/js/jquery.connections.js"></script>
   <script>
     $(document).ready(function () {
-      $('#1A').connections({
-        to: '#2A,#3A',
-      });
       $('#2A').connections({
-        to: '#5A,#4A',
+        to: '#1A',
       });
       $('#3A').connections({
-        to: '#6A,#7A',
+        to: '#1A',
       });
       $('#4A').connections({
-        to: '#8A,#9A',
+        to: '#2A',
       });
       $('#5A').connections({
-        to: '#10A,#11A',
+        to: '#2A',
       });
       $('#6A').connections({
-        to: '#12A,#13A',
+        to: '#3A',
       });
       $('#7A').connections({
-        to: '#14A,#15A',
+        to: '#3A',
       });
-
-      $('#1B').connections({
-        to: '#2B,#3B',
+      $('#8A').connections({
+        to: '#4A',
+      });
+      $('#9A').connections({
+        to: '#4A',
+      });
+      $('#10A').connections({
+        to: '#5A',
+      });
+      $('#11A').connections({
+        to: '#5A',
+      });
+      $('#12A').connections({
+        to: '#6A',
+      });
+      $('#13A').connections({
+        to: '#6A',
+      });
+      $('#14A').connections({
+        to: '#7A',
+      });
+      $('#15A').connections({
+        to: '#7A',
       });
       $('#2B').connections({
-        to: '#5B,#4B',
+        to: '#1B',
       });
       $('#3B').connections({
-        to: '#6B,#7B',
+        to: '#1B',
       });
       $('#4B').connections({
-        to: '#8B,#9B',
+        to: '#2B',
       });
       $('#5B').connections({
-        to: '#10B,#11B',
+        to: '#2B',
       });
       $('#6B').connections({
-        to: '#12B,#13B',
+        to: '#3B',
       });
       $('#7B').connections({
-        to: '#14B,#15B',
+        to: '#3B',
       });
-
-      $('#1C').connections({
-        to: '#2C,#3C',
+      $('#8B').connections({
+        to: '#4B',
+      });
+      $('#9B').connections({
+        to: '#4B',
+      });
+      $('#10B').connections({
+        to: '#5B',
+      });
+      $('#11B').connections({
+        to: '#5B',
+      });
+      $('#12B').connections({
+        to: '#6B',
+      });
+      $('#13B').connections({
+        to: '#6B',
+      });
+      $('#14B').connections({
+        to: '#7B',
+      });
+      $('#15B').connections({
+        to: '#7B',
       });
       $('#2C').connections({
-        to: '#5C,#4C',
+        to: '#1C',
       });
       $('#3C').connections({
-        to: '#6C,#7C',
+        to: '#1C',
       });
       $('#4C').connections({
-        to: '#8C,#9C',
+        to: '#2C',
       });
       $('#5C').connections({
-        to: '#10C,#11C',
+        to: '#2C',
       });
       $('#6C').connections({
-        to: '#12C,#13C',
+        to: '#3C',
       });
       $('#7C').connections({
-        to: '#14C,#15C',
+        to: '#3C',
       });
-
-      $('#1D').connections({
-        to: '#2D,#3D',
+      $('#8C').connections({
+        to: '#4C',
+      });
+      $('#9C').connections({
+        to: '#4C',
+      });
+      $('#10C').connections({
+        to: '#5C',
+      });
+      $('#11C').connections({
+        to: '#5C',
+      });
+      $('#12C').connections({
+        to: '#6C',
+      });
+      $('#13C').connections({
+        to: '#6C',
+      });
+      $('#14C').connections({
+        to: '#7C',
+      });
+      $('#15C').connections({
+        to: '#7C',
       });
       $('#2D').connections({
-        to: '#5D,#4D',
+        to: '#1D',
       });
       $('#3D').connections({
-        to: '#6D,#7D',
+        to: '#1D',
       });
       $('#4D').connections({
-        to: '#8D,#9D',
+        to: '#2D',
       });
       $('#5D').connections({
-        to: '#10D,#11D',
+        to: '#2D',
       });
       $('#6D').connections({
-        to: '#12D,#13D',
+        to: '#3D',
       });
       $('#7D').connections({
-        to: '#14D,#15D',
+        to: '#3D',
+      });
+      $('#8D').connections({
+        to: '#4D',
+      });
+      $('#9D').connections({
+        to: '#4D',
+      });
+      $('#10D').connections({
+        to: '#5D',
+      });
+      $('#11D').connections({
+        to: '#5D',
+      });
+      $('#12D').connections({
+        to: '#6D',
+      });
+      $('#13D').connections({
+        to: '#6D',
+      });
+      $('#14D').connections({
+        to: '#7D',
+      });
+      $('#15D').connections({
+        to: '#7D',
       });
 
-      $('#1X').connections({
-        to: '#2X,#3X',
+      $('#3X').connections({
+        to: '#1X',
       });
       $('#2X').connections({
-        to: '#5X,#4X',
+        to: '#1X',
       });
-      $('#3X').connections({
-        to: '#6X,#7X',
+      $('#4X').connections({
+        to: '#2X',
+      });
+      $('#5X').connections({
+        to: '#2X',
+      });
+      $('#6X').connections({
+        to: '#3X',
+      });
+      $('#7X').connections({
+        to: '#3X',
       });
     });
   </script>
