@@ -138,7 +138,7 @@ module.exports.getProfile = async(req, res) =>{
     //var d = new Date(info.NgaySinh);
     //info.NgaySinh = d.toDateString();
     //info.NgaySinh = await info.NgaySinh.split('T')[0];
-    res.render('inforAthlete.ejs', {info: info});
+    res.render('info.ejs', {info: info});
 };
 
 module.exports.updateProfile = async(req, res) =>{
