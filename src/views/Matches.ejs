@@ -41,9 +41,9 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination pagination-lg justify-content-center">
         <% if(name){ %>
-            <li class="page-item"><a class="page-link" href="/match?vongdau=1&name=<%= name%>">Vòng 16</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=1&name=<%= name%>">Vòng 16</a></li>
         <% } else{ %>  
-            <li class="page-item"><a class="page-link" href="/match?vongdau=1%>">Vòng 16</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=1%>">Vòng 16</a></li>
         <% } %>
         <% if(name){ %>
             <li class="page-item"><a class="page-link" href="/match?vongdau=2&name=<%= name%>">Vòng 8</a></li>
@@ -58,12 +58,12 @@
         <% if(name){ %>
             <li class="page-item"><a class="page-link" href="/match?vongdau=4&name=<%= name%>">Bán Kết</a></li>
         <% } else{ %>  
-            <li class="page-item"><a class="page-link" href="/match?vongdau=4%>">Bán Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=4%>">Bán Kết</a></li>
         <% } %>
         <% if(name){ %>
-            <li class="page-item"><a class="page-link" href="/match?vongdau=5&name=<%= name%>">Chung Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=5&name=<%= name%>">Chung Kết</a></li>
         <% } else{ %>  
-            <li class="page-item"><a class="page-link" href="/match?vongdau=5%>">Chung Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=5%>">Chung Kết</a></li>
         <% } %>
         </ul>
       </nav>

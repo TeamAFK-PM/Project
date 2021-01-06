@@ -2,7 +2,7 @@ require('dotenv').config()
 
 seKey = process.env.SESSION_SECRET
 console.log(seKey)
-
+const { poolPromise, sql } = require('./config/db');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -55,9 +55,20 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res)=> {
+app.get('/', async(req, res)=> {
+  try{
+
+    const pool = await poolPromise;
     
-    res.render('index.ejs');
+    var player = await pool.request()
+        .query(`select nd.HoTen 
+        from XepHang xh join NguoiDung nd on xh.CauThu = nd.TenDangNhap 
+        order by DiemTichLuy DESC`);
+    }catch(err){
+    res.status(404);
+    res.send(err.message);
+}
+    res.render('index.ejs', {player: player});
 });
 
 app.use('/', user);
