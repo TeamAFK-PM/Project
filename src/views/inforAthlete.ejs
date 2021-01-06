@@ -14,12 +14,12 @@
           <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-center">
           	<div class="text text-center">
           		
-		  				<h1><%= info.HoTen%></h1>
+		  				<h1><%= result.HoTen%></h1>
 			  				<h2>I'm from 
 								  <span
 								     class="txt-rotate"
 								     data-period="2000"
-								     data-rotate='[ "<%= info.DiaChi%>"]'></span>
+								     data-rotate='[ "<%= result.DiaChi%>"]'></span>
 								</h2>
 							</div>
             </div>
@@ -48,19 +48,13 @@
 		          <div class="col-md-12 heading-section ftco-animate">
 		          	<h1 class="big">About</h1>
 		            <h2 class="mb-4">About Me</h2>
-		            <form class="about-info mt-4 px-md-0 px-2" action="/profile" method="POST">
-                  <label>Họ tên</label>
-                  <input type="text" name="name" value="<%= info.HoTen %>"/><br/>
-                  <label>Ngày sinh</label>
-                  <input type="date" name="dob" value="<%= info.NgaySinh %>"/><br/>
-                  <label>Địa chỉ</label>
-                  <input type="text" name="address" value="<%= info.DiaChi %>"/><br/>
-                  <label>Email</label>
-                  <input type="text" name="email" value="<%= info.Email %>"/><br/>
-                  <label>Số điện thoại</label>
-                  <input type="text" name="phone" value="<%= info.SoDienThoai %>"/><br/>
-                  <button>Update</button>
-                </form>
+		            <ul class="about-info mt-4 px-md-0 px-2">
+		            	<li class="d-flex"><span>Name:</span> <span><%= result.HoTen%></span></li>
+		            	<li class="d-flex"><span>Date of birth:</span> <span><%= result.NgaySinh%></span></li>
+		            	<li class="d-flex"><span>Address:</span> <span><%= result.DiaChi%></span></li>
+		            	<li class="d-flex"><span>Email:</span> <span><%= result.Email%></span></li>
+		            	<li class="d-flex"><span>Phone: </span> <span><%= result.SoDienThoai%></span></li>
+		            </ul>
 		          </div>
 		        </div>
 	          
