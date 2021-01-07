@@ -12,6 +12,9 @@ router.get("/manage", adminController.getManage);
 router.get("/accept/:id", adminController.postAccept);
 router.get("/refuse/:id", adminController.postConfuse);
 router.get("/match", adminController.getMatch);
+
+router.get("/tournament", adminController.getTournament);
+router.post("/tournament", adminController.postTour);
 router.get("/alternative", adminController.getAlternative);
 router.get("/edittournament", adminController.getEditTournament);
 

@@ -38,8 +38,11 @@ create table NguoiDung(
 
 
 create table GiaiDau(
-	MaMuaGiai int primary key,
-	DiaDiem nvarchar(100)
+	MaMuaGiai nvarchar(30) primary key,
+	DiaDiem nvarchar(100),
+	TenGiai nvarchar(30),
+	NgayKhoiTranh date,
+	Mota nvarchar(500),
 )
 
 create table VongDau(
@@ -48,7 +51,7 @@ create table VongDau(
 )
 
 create table TranDau(
-	MuaGiai int not null,
+	MuaGiai nvarchar(30) not null,
 	VongDau int not null,
 	CauThu1 nvarchar(50) not null,
 	CauThu2 nvarchar(50) not null,
@@ -73,7 +76,7 @@ create table PhieuDangKy(
 
 create table XepHang(
 	CauThu nvarchar(50),
-	MuaGiai int,
+	MuaGiai nvarchar(30),
 	DiemTichLuy int default 0,
 	primary key(CauThu, MuaGiai),
 	constraint fk_xephang_cauthu foreign key(CauThu) references NguoiDung(TenDangNhap),
@@ -130,7 +133,7 @@ values(1, N'Vòng 16'),
 (5, N'Chung kết')
 
 insert into GiaiDau
-values(2020, N'Hồ Chí Minh')
+values(2020, N'Hồ Chí Minh', N'Giải mùa xuân năm 2020', '1/1/2020', N'Giải đấu quy tụ những cầu thủ hàng đầu đất nước')
 
 insert into TranDau
 values(2020, 1, 'player01', 'player02', 'player01'),
@@ -181,7 +184,7 @@ select * from TranDau
 select * from XepHang
 --store procedure để xếp hạng cho mùa sau
 go
-alter proc sp_xep_hang(@mua_giai int)
+create proc sp_xep_hang(@mua_giai int)
 as
 begin
 	if not exists (select KetQua from TranDau td where td.MuaGiai = @mua_giai
@@ -226,5 +229,5 @@ end
 
 exec sp_xep_hang 2020
 
-select * from XepHang
+select * from	
 delete XepHang

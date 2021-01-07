@@ -9,13 +9,41 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <%- include('./partials/head'); %>
-
+  <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+  </script>
 </head>
 
 <body class="bradcam_area breadcam_bg_2" style="padding:0px !important ;">
+  
   <%- include('./partials/header'); %>
 
-
+  <%if (locals.messErr) { %>
+                      
+              
+    <!-- Modal -->
+    
+    <div class="modal fade show" id="exampleModal" tabindex="-1" aria-hidden="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <%= messErr %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<% } %>
 
   <div class="bradcam_area breadcam_bg_2">
     <div class="container">
@@ -28,24 +56,34 @@
       </div>
     </div>
   </div>
+ 
+  
   <div style="height: 30px;"></div>
   </div>
+  
+  <form method="POST" action ="/admin/tournament?tour=<%=method%>">
   <div class="d-flex justify-content-around input-group" style="margin-top:50px ;">
     <div>
       <h4>Name of tournament : </h4>
-      <input type="text" name="nameOfTour" id="" class="form-control input-border" placeholder="Name" />
+      <input type="text" name="nameOfTour" id="" class="form-control input-border"<% if (locals.nameOfTour) {%> value="<%=nameOfTour%>" <%}else{%> value="" <%}%> " placeholder="Name" />
     </div>
     <div>
       <h4>Start date : </h4>
-      <input type="text" name="dateTour" id="datepicker" class="form-control input-border"
+      <input type="text" name="dateTour" id="datepicker" class="form-control input-border" <% if (locals.dateTour) {%> value="<%=dateTour%>" <%}else{%> value="" <%}%> 
         style="border: 1px solid rgb(109, 109, 109) !important; border-radius: 5px; height: 40px !important;" />
     </div>
   </div>
   <div class="input-group-lg">
+    <h4>The venue of the tournament
+    </h4>
+    <input type="text" name = "address" class="form-control input-border" <% if (locals.address) {%> value="<%=address%>" <%}else{%> value="" <%}%>  style="height: 100px !important; font-size: small;">
+  </div>
+  <div class="input-group-lg">
     <h4>Description
     </h4>
-    <input type="text" name = "des" class="form-control input-border" style="height: 100px !important; font-size: small;">
+    <input type="text" name = "des" class="form-control input-border" <% if (locals.des) {%> value="<%=des%>" <%}else{%> value="" <%}%> style="height: 100px !important; font-size: small;">
   </div>
+
   <div class="d-flex flex-column justify-content-center" style="margin-top: 100px">
     <h1 style="text-align: center;">Table A</h1>
     <table class="table">
@@ -57,7 +95,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="1A" class="block">expamle </td>
+        <td id="1A" class="block"><%if (locals.vong3) {%><%if (vong3[0]) {%><%=vong3[0].KetQua%><%}%><%}%> </td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -70,7 +108,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="2A" class="block">example</td>
+        <td id="2A" class="block"><%if (locals.vong2) {%><%if (vong2[0]) {%><%=vong2[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -78,44 +116,44 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3A" class="block">example</td>
+        <td id="3A" class="block"><%if (locals.vong2) {%><%if (vong2[1]) {%><%=vong2[1].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
       </tr>
       <tr>
         <td class="notblock"></td>
-        <td id="4A" class="block">example</td>
+        <td id="4A" class="block"><%if (locals.vong1) {%><%if (vong1[0]) {%><%=vong1[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="5A" class="block">example</td>
+        <td id="5A" class="block"><%if (locals.vong1) {%><%if (vong1[1]) {%><%=vong1[1].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="6A" class="block">example</td>
+        <td id="6A" class="block"><%if (locals.vong1) {%><%if (vong1[2]) {%><%=vong1[2].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="7A" class="block">example</td>
+        <td id="7A" class="block"><%if (locals.vong1) {%><%if (vong1[3]) {%><%=vong1[3].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
       </tr>
       <tr>
-        <td id="8A" class="block">example</td>
+        <td id="8A" class="block"><%if (locals.vong1) {%><%if (vong1[0]) {%><%=vong1[0].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="9A" class="block">example</td>
+        <td id="9A" class="block"><%if (locals.vong1) {%><%if (vong1[0]) {%><%=vong1[0].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="10A" class="block">example</td>
+        <td id="10A" class="block"><%if (locals.vong1){%><%if (vong1[1]) {%><%=vong1[1].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="11A" class="block">example</td>
+        <td id="11A" class="block"><%if (locals.vong1){%><%if (vong1[1]) {%><%=vong1[1].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="12A" class="block">example</td>
+        <td id="12A" class="block"><%if (locals.vong1){%><%if (vong1[2]) {%><%=vong1[2].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="13A" class="block">example</td>
+        <td id="13A" class="block"><%if (locals.vong1){%><%if (vong1[2]) {%><%=vong1[2].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="14A" class="block">example</td>
+        <td id="14A" class="block"><%if (locals.vong1){%><%if (vong1[3]) {%><%=vong1[3].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="15A" class="block">example</td>
+        <td id="15A" class="block"><%if (locals.vong1){%><%if (vong1[3]) {%><%=vong1[3].CauThu2%><%}%><%}%></td>
       </tr>
     </table>
     
@@ -132,7 +170,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="1B" class="block">expamle </td>
+        <td id="1B" class="block"><%if (locals.vong3) {%><%if (vong3[1]) {%><%=vong3[1].KetQua%><%}%><%}%>  </td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -145,7 +183,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="2B" class="block">example</td>
+        <td id="2B" class="block"><%if (locals.vong2) {%><%if (vong2[2]) {%><%=vong2[2].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -153,44 +191,44 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3B" class="block">example</td>
+        <td id="3B" class="block"><%if (locals.vong2) {%><%if (vong2[3]) {%><%=vong2[3].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
       </tr>
       <tr>
         <td class="notblock"></td>
-        <td id="4B" class="block">example</td>
+        <td id="4B" class="block"><%if (locals.vong1) {%><%if (vong1[4]) {%><%=vong1[4].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="5B" class="block">example</td>
+        <td id="5B" class="block"><%if (locals.vong1) {%><%if (vong1[5]) {%><%=vong1[5].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="6B" class="block">example</td>
+        <td id="6B" class="block"><%if (locals.vong1) {%><%if (vong1[6]) {%><%=vong1[6].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="7B" class="block">example</td>
+        <td id="7B" class="block"><%if (locals.vong1) {%><%if (vong1[7]) {%><%=vong1[7].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
       </tr>
       <tr>
-        <td id="8B" class="block">example</td>
+        <td id="8B" class="block"><%if (locals.vong1) {%><%if (vong1[4]) {%><%=vong1[4].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="9B" class="block">example</td>
+        <td id="9B" class="block"><%if (locals.vong1) {%><%if (vong1[4]) {%><%=vong1[4].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="10B" class="block">example</td>
+        <td id="10B" class="block"><%if (locals.vong1) {%><%if (vong1[5]) {%><%=vong1[5].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="11B" class="block">example</td>
+        <td id="11B" class="block"><%if (locals.vong1) {%><%if (vong1[5]) {%><%=vong1[5].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="12B" class="block">example</td>
+        <td id="12B" class="block"><%if (locals.vong1) {%><%if (vong1[6]) {%><%=vong1[6].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="13B" class="block">example</td>
+        <td id="13B" class="block"><%if (locals.vong1) {%><%if (vong1[6]) {%><%=vong1[6].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="14B" class="block">example</td>
+        <td id="14B" class="block"><%if (locals.vong1) {%><%if (vong1[7]) {%><%=vong1[7].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="15B" class="block">example</td>
+        <td id="15B" class="block"><%if (locals.vong1) {%><%if (vong1[7]) {%><%=vong1[7].CauThu2%><%}%><%}%></td>
       </tr>
     </table>
     
@@ -207,7 +245,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="1C" class="block">expamle </td>
+        <td id="1C" class="block"><%if (locals.vong3) {%><%if (vong3[2]) {%><%=vong3[2].KetQua%><%}%><%}%>  </td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -220,7 +258,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="2C" class="block">example</td>
+        <td id="2C" class="block"><%if (locals.vong2) {%><%if (vong2[4]) {%><%=vong2[5].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -228,44 +266,44 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3C" class="block">example</td>
+        <td id="3C" class="block"><%if (locals.vong2) {%><%if (vong2[5]) {%><%=vong2[5].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
       </tr>
       <tr>
         <td class="notblock"></td>
-        <td id="4C" class="block">example</td>
+        <td id="4C" class="block"><%if (locals.vong1) {%><%if (vong1[8]) {%><%=vong1[8].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="5C" class="block">example</td>
+        <td id="5C" class="block"><%if (locals.vong1) {%><%if (vong1[9]) {%><%=vong1[9].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="6C" class="block">example</td>
+        <td id="6C" class="block"><%if (locals.vong1) {%><%if (vong1[10]) {%><%=vong1[10].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="7C" class="block">example</td>
+        <td id="7C" class="block"><%if (locals.vong1) {%><%if (vong1[11]) {%><%=vong1[11].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
       </tr>
       <tr>
-        <td id="8C" class="block">example</td>
+        <td id="8C" class="block"><%if (locals.vong1) {%><%if (vong1[8]) {%><%=vong1[8].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="9C" class="block">example</td>
+        <td id="9C" class="block"><%if (locals.vong1) {%><%if (vong1[8]) {%><%=vong1[8].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="10C" class="block">example</td>
+        <td id="10C" class="block"><%if (locals.vong1) {%><%if (vong1[9]) {%><%=vong1[9].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="11C" class="block">example</td>
+        <td id="11C" class="block"><%if (locals.vong1) {%><%if (vong1[9]) {%><%=vong1[9].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="12C" class="block">example</td>
+        <td id="12C" class="block"><%if (locals.vong1) {%><%if (vong1[10]) {%><%=vong1[10].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="13C" class="block">example</td>
+        <td id="13C" class="block"><%if (locals.vong1) {%><%if (vong1[10]) {%><%=vong1[10].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="14C" class="block">example</td>
+        <td id="14C" class="block"><%if (locals.vong1) {%><%if (vong1[11]) {%><%=vong1[11].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="15C" class="block">example</td>
+        <td id="15C" class="block"><%if (locals.vong1) {%><%if (vong1[11]) {%><%=vong1[11].CauThu2%><%}%><%}%></td>
       </tr>
     </table>
     
@@ -282,7 +320,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="1D" class="block">expamle </td>
+        <td id="1D" class="block"><%if (locals.vong3) {%><%if (vong3[3]) {%><%=vong3[3].KetQua%><%}%><%}%> </td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -295,7 +333,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="2D" class="block">example</td>
+        <td id="2D" class="block"><%if (locals.vong2) {%><%if (vong2[6]) {%><%=vong2[6].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -303,44 +341,44 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3D" class="block">example</td>
+        <td id="3D" class="block"><%if (locals.vong2) {%><%if (vong1[7]) {%><%=vong2[7].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
       </tr>
       <tr>
         <td class="notblock"></td>
-        <td id="4D" class="block">example</td>
+        <td id="4D" class="block"><%if (locals.vong1) {%><%if (vong1[12]) {%><%=vong1[12].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="5D" class="block">example</td>
+        <td id="5D" class="block"><%if (locals.vong1) {%><%if (vong1[13]) {%><%=vong1[13].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="6D" class="block">example</td>
+        <td id="6D" class="block"><%if (locals.vong1) {%><%if (vong1[14]) {%><%=vong1[14].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="7D" class="block">example</td>
+        <td id="7D" class="block"><%if (locals.vong1) {%><%if (vong1[15]) {%><%=vong1[15].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
       </tr>
       <tr>
-        <td id="8D" class="block">example</td>
+        <td id="8D" class="block"><%if (locals.vong1) {%><%if (vong1[12]) {%><%=vong1[12].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="9D" class="block">example</td>
+        <td id="9D" class="block"><%if (locals.vong1) {%><%if (vong1[12]) {%><%=vong1[12].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="10D" class="block">example</td>
+        <td id="10D" class="block"><%if (locals.vong1) {%><%if (vong1[13]) {%><%=vong1[13].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="11D" class="block">example</td>
+        <td id="11D" class="block"><%if (locals.vong1) {%><%if (vong1[13]) {%><%=vong1[13].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="12D" class="block">example</td>
+        <td id="12D" class="block"><%if (locals.vong1) {%><%if (vong1[14]) {%><%=vong1[14].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="13D" class="block">example</td>
+        <td id="13D" class="block"><%if (locals.vong1) {%><%if (vong1[14]) {%><%=vong1[14].CauThu2%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="14D" class="block">example</td>
+        <td id="14D" class="block"><%if (locals.vong1) {%><%if (vong1[15]) {%><%=vong1[15].CauThu1%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="15D" class="block">example</td>
+        <td id="15D" class="block"><%if (locals.vong1) {%><%if (vong1[15]) {%><%=vong1[15].CauThu2%><%}%><%}%></td>
       </tr>
     </table>
     
@@ -353,36 +391,37 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="1X" class="block">expamle</td>
+        <td id="1X" class="block"><%if (locals.vong5) {%><%if (vong5[0]) {%><%=vong5[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
       </tr>
       <tr>
         <td class="notblock"></td>
-        <td id="2X" class="block">expamle</td>
+        <td id="2X" class="block"><%if (locals.vong4) {%><%if (vong4[0]) {%><%=vong4[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3X" class="block">expamle</td>
+        <td id="3X" class="block"><%if (locals.vong4) {%><%if (vong4[0]) {%><%=vong4[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
       </tr>
       <tr>
-        <td id="4X" class="block">expamle</td>
+        <td id="4X" class="block"><%if (locals.vong3) {%><%if (vong3[0]) {%><%=vong3[0].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="5X" class="block">expamle</td>
+        <td id="5X" class="block"><%if (locals.vong3) {%><%if (vong3[1]) {%><%=vong3[1].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="6X" class="block">expamle</td>
+        <td id="6X" class="block"><%if (locals.vong3) {%><%if (vong3[2]) {%><%=vong3[2].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
-        <td id="7X" class="block">expamle</td>
+        <td id="7X" class="block"><%if (locals.vong3) {%><%if (vong3[3]) {%><%=vong3[3].KetQua%><%}%><%}%></td>
       </tr>
     </table>
     <div class="d-flex justify-content-around">
       <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
-      <button type="button" class="btn btn-primary btn-lg">Save</button>
+      <button type="submit" class="btn btn-primary btn-lg">Save</button>
     </div>
     <div style="height: 60px;"></div>
   </div>
+</form>
   <!-- contact_rsvp -->
   <div class="contact_rsvp">
     <div class="container">
@@ -491,7 +530,9 @@
       </div>
     </div>
   </footer>
-  <script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+  
+</body>
+<script src="/js/vendor/modernizr-3.5.0.min.js"></script>
   <script src="/js/vendor/jquery-1.12.4.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
@@ -735,8 +776,10 @@
       });
     });
   </script>
-
-</body>
-
+  <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+  </script>
 </html>
 <!doctype html>

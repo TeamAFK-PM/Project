@@ -1,6 +1,6 @@
 const { poolPromise } = require('../config/db')
 
-module.exports.Sort = async (req, res) =>{
+
 
     function getRandomNumber(min, max){
         let distance = max - min + 1;
@@ -103,10 +103,4 @@ module.exports.Sort = async (req, res) =>{
         return res;
     }
 
-    //---------------------
-
-    joinMatch = getRandomMatch(28);
-
-    res.send(joinMatch);
-}
-
+    
