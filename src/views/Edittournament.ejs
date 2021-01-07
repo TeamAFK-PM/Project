@@ -74,9 +74,7 @@
                             <div class="form-group" style="width: 150px;">
                                 <label for="exampleFormControlSelect1">Name of player</label>
                                 <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Jack</option>
-                                    <option>Kevin</option>
-                                    <option>Actrol</option>
+                                    <option><%= result.HT1%></option>
                                 </select>
                             </div>
                         </div>
@@ -84,8 +82,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="addon-wrapping">Score</span>
                             </div>
-                            <input type="text" class="form-control" style="outline: auto;" placeholder="Score of player"
+                            <% if(result.HT1 == result.HT3){ %>
+                                <input type="text" class="form-control" style="outline: auto;"  placeholder="1"
                                 aria-label="Username" aria-describedby="addon-wrapping">
+                            <% } else { %>
+                                <input type="text" class="form-control" style="outline: auto;"  placeholder="0"
+                                aria-label="Username" aria-describedby="addon-wrapping">
+                            <% } %>
                         </div>
                     </div>
                     <div class="col-6 border-left">
@@ -94,9 +97,7 @@
                                 <div class="form-group" style="width: 150px;">
                                     <label for="exampleFormControlSelect1">Name of player</label>
                                     <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Jack</option>
-                                        <option>Kevin</option>
-                                        <option>Actrol</option>
+                                        <option><%= result.HT2%></option>
                                     </select>
                                 </div>
                                 <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
@@ -106,8 +107,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="addon-wrapping">Score</span>
                                 </div>
-                                <input type="text" class="form-control" style="outline: auto;" placeholder="Score of player"
+                                <% if(result.HT2 == result.HT3){ %>
+                                    <input type="text" class="form-control" style="outline: auto;"  placeholder="1"
                                     aria-label="Username" aria-describedby="addon-wrapping">
+                                <% } else { %>
+                                    <input type="text" class="form-control" style="outline: auto;"  placeholder="0"
+                                    aria-label="Username" aria-describedby="addon-wrapping">
+                                <% } %>
                             </div>
                         </div>
                     </div>
