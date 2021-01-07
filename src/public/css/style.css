@@ -2017,9 +2017,9 @@ h3 {
 /* line 191, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_area.music_gallery {
   margin-top: 0;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #EFEFEF;
-  padding-top: 145px;
+  padding-top: 30px;
   background: #fff;
 }
 
@@ -2040,7 +2040,7 @@ h3 {
 
 /* line 206, ../../Arafath/CL/Cl November/221. Music/HTML/scss/_music_area.scss */
 .music_area.music_gallery.inc_padding {
-  padding-bottom: 130px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 767px) {

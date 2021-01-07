@@ -311,3 +311,26 @@ module.exports.postTour = async (req, res, next) =>{
         .send(err);
     }
 }
+
+module.exports.getAlternative = async (req, res) =>{
+    var vongDau = parseInt(req.query.vongdau) || 1;
+    var muaGiai = 2020;
+
+    try{
+        const pool = await poolPromise;
+        const pool1 = await poolPromise;
+        
+        var results = await pool.request()
+            .query(`select ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3 from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
+            join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
+            join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
+            where TD.MuaGiai = '${muaGiai}' and TD.VongDau = '${vongDau}'`);
+
+
+        }catch(err){
+        res.status(404);
+        res.send(err.message);
+    }
+
+    res.render('alternative.ejs', {results: results});
+}

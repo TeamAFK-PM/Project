@@ -48,25 +48,29 @@
     </div>
   </div>
   <section class="ftco-section ftco-no-pb goto-here" id="resume-section">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pagination-lg justify-content-center">
+        <li class="page-item"><a class="page-link" href="/admin/alternative?vongdau=1%>">Vòng 16</a></li>
+        <li class="page-item"><a class="page-link" href="/admin/alternative?vongdau=2%>">Vòng 8</a></li>
+        <li class="page-item"><a class="page-link" href="/admin/alternative?vongdau=3%>">Tứ kết</a></li>
+        <li class="page-item"><a class="page-link" href="/admin/alternative?vongdau=4%>">Bán kết</a></li>
+        <li class="page-item"><a class="page-link" href="/admin/alternative?vongdau=5%>">Chung kết</a></li>
+      </ul>
+    </nav>
     <div class="container" style="margin:0px 30px 0px 30px !important;">
       <div class="row">
         <div class="col-md-2" style="width: 20% !important;">
           <nav id="navi">
-            <ul>
-              <li><a href="#page-1">Matchs</a></li>
-              <li><a href="#page-2">All team</a></li>
-            </ul>
+            <div style="display: flex; justify-content: space-between;" class="text-center">
+              <div style="width : 150px;">
+                <a class="btn btn-success w-80" href="Edittournament.html" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+              </div>
+            </div>
           </nav>
         </div>
         <div class="col-md-10">
           <div id="page-1" class="page three" >
-            <div style="display: flex; justify-content: space-between;" class="text-center">
-              <h2 class="heading">Matchs</h2>
-              <div style="width : 150px;">
-                <a class="btn btn-success w-80" href="Edittournament.html" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
-              </div>
-
-            </div>
+            <% for(var i = 0; i < results.recordset.length; i++) { %>
             <div class="row progress-circle mb-5" style="width: 1100px; margin-bottom: 0px !important;" >
               <div class="mb-4" style="width: 800px">
                 <div class="bg-white rounded-lg shadow p-4">
@@ -85,15 +89,27 @@
                     <div class="col-6 border-right">
                       <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
                         class="figure float-left">
-                      <div class="h4 font-weight-bold figure">Alan Quick</div>
+                      <div class="h4 font-weight-bold figure"><%= results.recordset[i].HT1%></div>
                       <div style="height: 25px;"></div>
-                      <div class="h4 font-weight-bold">0</div>
+                      <div class="h4 font-weight-bold">
+                        <% if(results.recordset[i].HT3 == results.recordset[i].HT1){ %>
+                          <div class="h4 font-weight-bold" style="color: red;">1</div>
+                        <% } else{ %>  
+                            <div class="h4 font-weight-bold" style="color: black;">0</div>
+                        <% } %>
+                      </div>
                     </div>
                     <div class="col-6 border-left">
                       <div class="float-left figure">
-                        <div class="h4 font-weight-bold figure">Jack Alex</div>
+                        <div class="h4 font-weight-bold figure"><%= results.recordset[i].HT2%></div>
                         <div style="height: 25px;"></div>
-                        <div class="h4 font-weight-bold">0</div>
+                        <div class="h4 font-weight-bold">
+                          <% if(results.recordset[i].HT3 == results.recordset[i].HT2){ %>
+                            <div class="h4 font-weight-bold" style="color: red;">1</div>
+                          <% } else{ %>  
+                              <div class="h4 font-weight-bold" style="color: black;">0</div>
+                          <% } %>
+                        </div>
                       </div>
                       <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
                         class="figure float-right">
@@ -101,182 +117,10 @@
                   </div>
                   <!-- END -->
                 </div>
-                <div style="height: 20px;"></div>
-                <div class="mb-4">
-                  <div class="bg-white rounded-lg shadow p-4">
-                    <div class="d-flex" style="justify-content:flex-end;  ">
-                      <a class="btn btn-primary w-80" style="margin-right:10px;" href="#" role="button"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                      <a class="btn btn-danger w-80" href="#" role="button"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
-                      </div>
-                    <div class="h5 font-weight-bold text-center mb-4">17th October 2019 , 8:00</div>
-
-                    <!-- Progress bar 1 -->
-                    <!-- END -->
-
-                    <!-- Demo info -->
-                    <div class="row text-center mt-4" style="width : px; margin-left: 0px !important;">
-                      <div class="col-6 border-right">
-                        <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                          class="figure float-left">
-                        <div class="h4 font-weight-bold figure">Alan Quick</div>
-                        <div style="height: 25px;"></div>
-                        <div class="h4 font-weight-bold">0</div>
-                      </div>
-                      <div class="col-6 border-left">
-                        <div class="float-left figure">
-                          <div class="h4 font-weight-bold figure">Jack Alex</div>
-                          <div style="height: 25px;"></div>
-                          <div class="h4 font-weight-bold">0</div>
-                        </div>
-                        <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                          class="figure float-right">
-                      </div>
-                    </div>
-                    <!-- END -->
-                  </div>
-
-                  <div style="height: 20px;"></div>
-                  <div class="mb-4">
-                    <div class="bg-white rounded-lg shadow p-4">
-                      <div class="d-flex" style="justify-content:flex-end;  ">
-                        <a class="btn btn-primary w-80" style="margin-right:10px;" href="#" role="button"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                        <a class="btn btn-danger w-80" href="#" role="button"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
-                        </div>
-                      <div class="h5 font-weight-bold text-center mb-4">17th October 2019 , 8:00</div>
-
-                      <!-- Progress bar 1 -->
-                      <!-- END -->
-
-                      <!-- Demo info -->
-                      <div class="row text-center mt-4" style="width : px; margin-left: 0px !important;">
-                        <div class="col-6 border-right">
-                          <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                            class="figure float-left">
-                          <div class="h4 font-weight-bold figure">Alan Quick</div>
-                          <div style="height: 25px;"></div>
-                          <div class="h4 font-weight-bold">0</div>
-                        </div>
-                        <div class="col-6 border-left">
-                          <div class="float-left figure">
-                            <div class="h4 font-weight-bold figure">Jack Alex</div>
-                            <div style="height: 25px;"></div>
-                            <div class="h4 font-weight-bold">0</div>
-                          </div>
-                          <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                            class="figure float-right">
-                        </div>
-                      </div>
-                      <!-- END -->
-                    </div>
-                    <div style="height: 20px;"></div>
-                    <div class="mb-4">
-                      <div class="bg-white rounded-lg shadow p-4">
-                        <div class="d-flex" style="justify-content:flex-end;  ">
-                          <a class="btn btn-primary w-80" style="margin-right:10px;" href="#" role="button"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                          <a class="btn btn-danger w-80" href="#" role="button"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
-                          </div>
-                        <div class="h5 font-weight-bold text-center mb-4">17th October 2019 , 8:00</div>
-
-                        <!-- Progress bar 1 -->
-                        <!-- END -->
-
-                        <!-- Demo info -->
-                        <div class="row text-center mt-4" style="width : px; margin-left: 0px !important;">
-                          <div class="col-6 border-right">
-                            <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                              class="figure float-left">
-                            <div class="h4 font-weight-bold figure">Alan Quick</div>
-                            <div style="height: 25px;"></div>
-                            <div class="h4 font-weight-bold">0</div>
-                          </div>
-                          <div class="col-6 border-left">
-                            <div class="float-left figure">
-                              <div class="h4 font-weight-bold figure">Jack Alex</div>
-                              <div style="height: 25px;"></div>
-                              <div class="h4 font-weight-bold">0</div>
-                            </div>
-                            <img src="./img/about.jpg" alt="logo" style="width : 100px; height :100px"
-                              class="figure float-right">
-                          </div>
-                        </div>
-                        <!-- END -->
-                      </div>
-
                     </div>
 
                   </div>
-
-
-                  <div id="page-2" class="page four" style="height: 600px !important;">
-                    <h2 class="heading">All team in this tournament : </h2>
-                    <div class="container" style="height: 600px !important">
-                      <div id="slider" class="owl-carousel">
-                        <div class="content-area">
-                          <a href="#">
-                            <img src="./img/about/singer.png" alt="" class="wh-300">
-                            <span class="custom-overlay">
-                              <span class="content-text">
-                                <h4>Player with 4 year of experience</h4>
-                                <h3>Have 3 price</h3>
-                                <p>10 October, 1997</p>
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                        
-                        <div class="content-area">
-                          <a href="#">
-                            <img src="./img/about/about_1.png" alt="" class="wh-300">
-                            <span class="custom-overlay">
-                              <span class="content-text">
-                                <h4>Player with 4 year of experience</h4>
-                                <h3>Have 3 price</h3>
-                                <p>10 October, 1997</p>
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                        <div class="content-area">
-                          <a href="#">
-                            <img src="./img/about/singer.png" alt="" class="wh-300">
-                            <span class="custom-overlay">
-                              <span class="content-text">
-                                <h4>Player with 4 year of experience</h4>
-                                <h3>Have 3 price</h3>
-                                <p>10 October, 1997</p>
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                        <div class="content-area">
-                          <a href="#">
-                            <img src="./img/about/singer.png" alt="" class="wh-300">
-                            <span class="custom-overlay">
-                              <span class="content-text">
-                                <h4>Player with 4 year of experience</h4>
-                                <h3>Have 3 price</h3>
-                                <p>10 October, 1997</p>
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                        <div class="content-area">
-                          <a href="#">
-                            <img src="./img/about/singer.png" alt="" class="wh-300">
-                            <span class="custom-overlay">
-                              <span class="content-text">
-                                <h4>Player with 4 year of experience</h4>
-                                <h3>Have 3 price</h3>
-                                <p>10 October, 1997</p>
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                  </div>
+                  <% } %>
                 </div>
               </div>
             </div>

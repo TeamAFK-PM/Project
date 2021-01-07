@@ -70,7 +70,7 @@
   <div style="height: 100px;">
   </div>
   <div>
-    <h1 class="text-center"> Rank athletes</h1>
+    <h1 class="text-center"> Top players</h1>
 
     <div class="music_area music_gallery inc_padding">
       <div class="container">
@@ -83,12 +83,12 @@
                     <img src="img/vang.jpg" alt="">
                   </div>
                   <div class="thumb">
-                    <img src="img/music_man/1.png" alt="">
+                    <img src="img/music_man/Williams_S.jpg" alt="" style="width: 148px; height: 148px;">
                   </div>
                   <div class="audio_name">
                     <div class="name">
-                      <h4>Federer</h4>
-                      <p>Number of matches won:30</p>
+                      <h4><%= player.recordset[0].HoTen%></h4>
+                      <p>Number of matches won:5</p>
                     </div>
 
                   </div>
@@ -96,7 +96,7 @@
               </div>
               <div class="col-xl-3 col-md-3">
                 <div class="music_btn">
-                  <a href="#" class="boxed-btn">More info</a>
+                  <a href="/playerinfor?name=<%= player.recordset[0].HoTen %>" class="boxed-btn">More info</a>
                 </div>
               </div>
             </div>
@@ -112,12 +112,12 @@
                     <img src="img/bac2.png" alt="">
                   </div>
                   <div class="thumb" style="margin-left: 30px;">
-                    <img src="img/music_man/2.png" alt="">
+                    <img src="img/music_man/roger_federer.jpg" alt="" style="width: 148px; height: 148px;">
                   </div>
                   <div class="audio_name">
                     <div class="name">
-                      <h4>Ronaldo</h4>
-                      <p>Number of matches won: 20</p>
+                      <h4><%= player.recordset[1].HoTen%></h4>
+                      <p>Number of matches won: 4</p>
                     </div>
 
                   </div>
@@ -125,7 +125,7 @@
               </div>
               <div class="col-xl-3 col-md-3">
                 <div class="music_btn">
-                  <a href="#" class="boxed-btn">More info</a>
+                  <a href="/playerinfor?name=<%= player.recordset[1].HoTen %>" class="boxed-btn">More info</a>
                 </div>
               </div>
             </div>
@@ -141,12 +141,12 @@
                     <img src="img/dong.png" alt="">
                   </div>
                   <div class="thumb" style="margin-left: 30px;">
-                    <img src="img/music_man/3.png" alt="">
+                    <img src="img/music_man/m_sara.jpg" alt=""  style="width: 148px; height: 148px;">
                   </div>
                   <div class="audio_name">
                     <div class="name">
-                      <h4>Messi</h4>
-                      <p>Number of matches won: 19</p>
+                      <h4><%= player.recordset[2].HoTen%></h4>
+                      <p>Number of matches won: 3</p>
                     </div>
 
                   </div>
@@ -154,7 +154,7 @@
               </div>
               <div class="col-xl-3 col-md-3">
                 <div class="music_btn">
-                  <a href="#" class="boxed-btn">More info</a>
+                  <a href="/playerinfor?name=<%= player.recordset[2].HoTen %>" class="boxed-btn">More info</a>
                 </div>
               </div>
             </div>
@@ -166,12 +166,12 @@
                 <div class="col-xl-9 col-md-9">
                   <div class="music_field">
                     <div class="thumb" style="margin-left: 200px;">
-                      <img src="img/music_man/2.png" alt="">
+                      <img src="img/music_man/rafael_nadal.jpg" alt=""  style="width: 148px; height: 148px;">
                     </div>
                     <div class="audio_name">
                       <div class="name">
-                        <h4>Ronaldo</h4>
-                        <p>Number of matches won:16</p>
+                        <h4><%= player.recordset[3].HoTen%></h4>
+                        <p>Number of matches won:3</p>
                       </div>
 
                     </div>
@@ -179,7 +179,33 @@
                 </div>
                 <div class="col-xl-3 col-md-3">
                   <div class="music_btn">
-                    <a href="#" class="boxed-btn">More info</a>
+                    <a href="/playerinfor?name=<%= player.recordset[3].HoTen %>" class="boxed-btn">More info</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row align-items-center justify-content-center mb-20">
+            <div class="col-xl-10">
+              <div class="row align-items-center">
+                <div class="col-xl-9 col-md-9">
+                  <div class="music_field">
+                    <div class="thumb" style="margin-left: 200px;">
+                      <img src="img/music_man/novak_djokovic.jpg" alt=""  style="width: 148px; height: 148px;">
+                    </div>
+                    <div class="audio_name">
+                      <div class="name">
+                        <h4><%= player.recordset[4].HoTen%></h4>
+                        <p>Number of matches won:3</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                  <div class="music_btn">
+                    <a href="/playerinfor?name=<%= player.recordset[4].HoTen %>" class="boxed-btn">More info</a>
                   </div>
                 </div>
               </div>
@@ -189,24 +215,9 @@
 
        
       </div>
-      <nav aria-label="..." style="margin-top: 35px; margin-left: 550px;">
-        <ul class="pagination">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
     </div>
         <div class="limiter">
-          <h1 class="text-center">Some tournament's avaible</h1>
+          <h1 class="text-center">Tournaments</h1>
           <div class="container">
             <div id="slider" class="owl-carousel">
               <div class="content-area">
@@ -214,57 +225,33 @@
                   <img src="./img/elements/f1.jpg" alt="" class="wh-300">
                   <span class="custom-overlay">
                     <span class="content-text">
-                      <h4>Player with 4 year of experience</h4>
+                      <h4>Young Talents</h4>
                       <h3>Have 3 price</h3>
-                      <p>10 October, 1997</p>
+                      <p>Planning...</p>
                     </span>
                   </span>
                 </a>
               </div>
               <div class="content-area">
-                <a href="#">
+                <a href="/match?MuaGiai=2020">
                   <img src="./img/elements/f2.jpg" alt="" class="wh-300">
                   <span class="custom-overlay">
                     <span class="content-text">
-                      <h4>Tournament X</h4>
+                      <h4>2020 Season</h4>
                       <h3>1.5 bilion dolar</h3>
-                      <p>10 October, 1997</p>
+                      <p>1 January, 2020</p>
                     </span>
                   </span>
                 </a>
               </div>
               <div class="content-area">
-                <a href="#">
+                <a href="/match?MuaGiai=2021">
                   <img src="./img/elements/f3.jpg" alt="" class="wh-300">
                   <span class="custom-overlay">
                     <span class="content-text">
-                      <h4>Tournament H</h4>
+                      <h4>2021 Season</h4>
                       <h3>one bilion dolar</h3>
-                      <p>10 October, 1997</p>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <div class="content-area">
-                <a href="#">
-                  <img src="./img/elements/f4.jpg" alt="" class="wh-300">
-                  <span class="custom-overlay">
-                    <span class="content-text">
-                      <h4>Tournament B</h4>
-                      <h3>1.5 milion dolar</h3>
-                      <p>10 October, 1997</p>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <div class="content-area">
-                <a href="#">
-                  <img src="./img/elements/f5.jpg" alt="" class="wh-300">
-                  <span class="custom-overlay">
-                    <span class="content-text">
-                      <h4>Tournament A</h4>
-                      <h3>one milion dolar</h3>
-                      <p>10 October, 1997</p>
+                      <p>1 January, 2021</p>
                     </span>
                   </span>
                 </a>

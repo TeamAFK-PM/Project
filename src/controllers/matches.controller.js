@@ -2,7 +2,7 @@ const { poolPromise, sql } = require('../config/db')
 
 module.exports.getMatches = async(req, res) => {
     var VongDau = parseInt(req.query.vongdau) || 1;
-    var MuaGiai = parseInt(req.query.muagiai) || 2020;
+    var MuaGiai = req.query.MuaGiai || 2020;
     var TenCauThu = req.query.name || '';
     try{
 
@@ -21,5 +21,5 @@ module.exports.getMatches = async(req, res) => {
         res.status(404);
         res.send(err.message);
     }
-    res.render('Matches.ejs',{results: results, results_name: results_name, name: TenCauThu});
+    res.render('Matches.ejs',{results: results, results_name: results_name, name: TenCauThu, MuaGiai:MuaGiai});
 }
