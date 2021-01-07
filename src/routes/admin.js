@@ -13,5 +13,7 @@ router.get("/accept/:id", adminController.postAccept);
 router.get("/refuse/:id", adminController.postConfuse);
 router.get("/match", adminController.getMatch);
 
+router.get("/tournament", adminController.getTournament);
+router.post("/tournament", adminController.postTour);
 
 module.exports = router;

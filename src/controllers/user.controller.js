@@ -10,7 +10,7 @@ const jwtKey = process.env.JWT_KEY
 
 module.exports.getLogin = async (req, res) => {
 
-    error = req.session.err;
+    let error = req.session.err;
     delete req.session.err;
     
     res.render("login.ejs", {err: error});
