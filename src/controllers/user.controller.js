@@ -143,22 +143,34 @@ module.exports.getProfile = async(req, res) =>{
 
 module.exports.updateProfile = async(req, res) =>{
     var user = req.session.user.TenDangNhap;
-    var name = req.body.name;
-    var dob = req.body.dob;
-    var address = req.body.address;
-    var email = req.body.email;
-    var phone = req.body.phone;
-
+    var name = req.body.FullName;
+    var password = req.body.PassWord;
+    var email = req.body.Email;
     try{
         const pool = await poolPromise;
+
+        if(name.length > 0){
+            var result = await pool.request()
+                .query(`update NguoiDung set HoTen = N'${name}' where TenDangNhap = '${user}'`);
+        }
+        if(email.length > 0){
+            var result = await pool.request()
+                .query(`update NguoiDung set Email = '${email}' where TenDangNhap = '${user}'`);
+        }
+        if(password.length > 0){
+            bcrypt.hash(password, bcrypt.genSaltSync(10),  async(err, hashPass) =>{ //Mã hóa mật khẩu trước khi lưu vào db
+                var result = await pool.request()
+                    .query(`update NguoiDung set MatKhau = '${hashPass}' where TenDangNhap = '${user}'`);
+    
+            })
+        }
         
-        var result = await pool.request()
-            .query(`update NguoiDung set HoTen = N'${name}', NgaySinh = '${dob}', DiaChi = N'${address}', Email = '${email}', SoDienThoai = '${phone}' where TenDangNhap = '${user}'`);
+        
     }catch(err){
         res.status(404);
         res.send(err.message);
     }
-
+    
     this.getProfile(req, res);
 };
 
