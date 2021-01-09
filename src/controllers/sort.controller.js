@@ -22,8 +22,8 @@ const { poolPromise } = require('../config/db')
 
 
 
-    function getRandomMatch(n){
-
+module.exports.getRandomMatch = (n) =>{
+       
         let array;
         let res = [];
         if (n > 4){
