@@ -13,7 +13,10 @@ module.exports.getPlayers =  async(req, res) =>{
         const pool1 = await poolPromise;
         
         var results = await pool.request()
-            .query(`select * from NguoiDung`);
+            .query(`With SQLPaging As(select Top(6 * ${page}) ROW_NUMBER() OVER (ORDER BY TenDangNhap asc) as ROW, *
+            from NguoiDung
+            where VaiTro = 2)
+            select * from SQLPaging with (nolock) where ROW > ${start}`);
 
         var search_name = await pool.request()
             .query(`select * from NguoiDung where HoTen LIKE N'%${nameq}%'`);

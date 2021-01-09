@@ -77,30 +77,35 @@
         <div class="card">
           <h5 class="card-header">Infomation of player</h5>
           <div class="card-body">
+			<form action="/profile", method="POST">
             <table class="table table-hover mb-0">
               <tbody>
                 <tr>
                   <th scope="row">Full Name</th>
-                  <td><%= info.HoTen%></td>
-                  <td><button type="button" class="btn btn-outline-success"> <i class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
+                  <td><input name = "FullName" placeholder="<%= info.HoTen%>"></input></td>
+                  <td><button id="btnName" type="button" onclick="onChangeName()" class="btn btn-outline-success"> <i
+                          class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
                 </tr>
                 <tr>
                   <th scope="row">Password</th>
-                  <td>*****************</td>
-                  <td><button type="button" class="btn btn-outline-success"> <i class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
+                  <td><input type="password" name = "PassWord" placeholder="**********"></input></td>
+                  <td><button id="btnPass" type="button" onclick="onChangePass()" class="btn btn-outline-success"> <i
+                          class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
                 </tr>
                 <tr>
                   <th scope="row">Date of Born</th>
-                  <td ><%= info.NgaySinh%></td>
-                  <td><button type="button" class="btn btn-outline-success"> <i class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
+                  <td><input name = "dob" placeholder="<%= info.NgaySinh%>"></input></td>
                 </tr>
                 <tr>
                   <th scope="row">Email</th>
-                  <td ><%= info.Email%></td>
-                  <td><button type="button" class="btn btn-outline-success"> <i class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
+                  <td><input name = "Email" placeholder="<%= info.Email%>"></input></td>
+                   <td><button id="btnEmail" type="button" onclick="onChangeEmail()" class="btn btn-outline-success">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>Change</button></td>
                 </tr>
               </tbody>
             </table>
+			<button type="submit" class="btn btn-outline-primary float-right">Save</button>
+			</form>
           </div>
         </div>
       </div>
@@ -261,6 +266,21 @@
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+	
+	<script>
+    function onChangeName() {
+      $('#fullName').replaceWith('<td><input type="text" id = "name" name = "name"/></td>');
+      $('#btnName').css('display', 'none');
+    }
+    function onChangeEmail() {
+      $('#Email').replaceWith('<td><input type="email" id = "email" name = "email"/></td>');
+      $('#btnEmail').css('display', 'none');
+    }
+    function onChangePass() {
+      $('#Password').replaceWith('<td><input type="password" id = "password" name = "password"/></td>');
+      $('#btnPass').css('display', 'none');
+    }
+  </script>
 </body>
 
 </html>

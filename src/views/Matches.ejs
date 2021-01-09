@@ -23,11 +23,15 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text ">
                         
-                        <form class="form-inline my-2 my-lg-0 my-lg-0 justify-content-center" style="display: flex !important; ">
+                        <form class="form-inline my-2 my-lg-0 my-lg-0 justify-content-center"
+                        style="display: flex !important;">
+                            <input type="hidden" name="VongDau" value="<%= VongDau%>"> 
+                            <input type="hidden" name="MuaGiai" value="<%= MuaGiai%>"> 
                             <input class="form-control mr-sm-2 fs-17 sizefull" type="text" name="name"
-                                placeholder="Nhập tên cầu thủ" aria-label="Search"
+                                placeholder="Nhập tên cầu thủ" aria-label="Search" vongdau = "2"
                                 style="width: 80%; height: 55px; background: #f1f1f1; border: 1px solid #696464;">
-                            <button class="btn btn-info my-2 my-sm-0 fs-17"
+                            <button
+                                class="btn btn-info my-2 my-sm-0 fs-17"
                                 style="width: 86px; height: 55px; border: 1px solid grey; background: #2196F3; color:white"
                                 type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -40,23 +44,32 @@
     <!-- music_area  -->
     <nav aria-label="Page navigation example">
         <ul class="pagination pagination-lg justify-content-center">
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mùa Giải
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/match?MuaGiai=2020">2020</a>
+                  <a class="dropdown-item" href="/match?MuaGiai=2021">2021</a>
+                </div>
+              </div>
         <% if(name){ %>
             <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=1&name=<%= name%>">Vòng 16</a></li>
         <% } else{ %>  
             <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=1%>">Vòng 16</a></li>
         <% } %>
         <% if(name){ %>
-            <li class="page-item"><a class="page-link" href="/match?vongdau=2&name=<%= name%>">Vòng 8</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=2&name=<%= name%>">Vòng 8</a></li>
         <% } else{ %>  
-            <li class="page-item"><a class="page-link" href="/match?vongdau=2%>">Vòng 8</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=2%>">Vòng 8</a></li>
         <% } %>
         <% if(name){ %>
-            <li class="page-item"><a class="page-link" href="/match?vongdau=3&name=<%= name%>">Tứ Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=3&name=<%= name%>">Tứ Kết</a></li>
         <% } else{ %>  
-            <li class="page-item"><a class="page-link" href="/match?vongdau=3%>">Tứ Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=3%>">Tứ Kết</a></li>
         <% } %>
         <% if(name){ %>
-            <li class="page-item"><a class="page-link" href="/match?vongdau=4&name=<%= name%>">Bán Kết</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=4&name=<%= name%>">Bán Kết</a></li>
         <% } else{ %>  
             <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=4%>">Bán Kết</a></li>
         <% } %>
@@ -109,6 +122,12 @@
                 </div>
           <div style="height: 20px;"></div>
           <% } %>
+          <ul class="pagination pagination-lg justify-content-center" style="margin:20px 0">
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=<%= VongDau%>&name=<%= name%>&page=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=<%= VongDau%>&name=<%= name%>&page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=<%= VongDau%>&name=<%= name%>&page=3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/match?MuaGiai=<%= MuaGiai%>&vongdau=<%= VongDau%>&name=<%= name%>&page=4">4</a></li>
+          </ul>
         </div>
           <!-- END -->
     <!-- contact_rsvp -->
@@ -272,6 +291,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mail-script.js"></script>
 
     <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
