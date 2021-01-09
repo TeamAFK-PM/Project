@@ -17,5 +17,6 @@ router.get("/tournament", adminController.getTournament);
 router.post("/tournament", adminController.postTour);
 router.get("/alternative", adminController.getAlternative);
 router.get("/edittournament", adminController.getEditTournament);
+router.post("/edittournament", adminController.postEditTournament);
 
 module.exports = router;

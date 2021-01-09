@@ -52,6 +52,7 @@
     </div>
     <section class="ftco-section ftco-about">
         <div class="container">
+            <form action="edittournament" method="POST">
             <div class="bg-white rounded-lg shadow p-4">
 
                 <div class="input-group flex-nowrap">
@@ -83,10 +84,10 @@
                                 <span class="input-group-text" id="addon-wrapping">Score</span>
                             </div>
                             <% if(result.HT1 == result.HT3){ %>
-                                <input type="text" class="form-control" style="outline: auto;"  placeholder="1"
+                                <input type="text" name = "score1" class="form-control" style="outline: auto;"  placeholder="1"
                                 aria-label="Username" aria-describedby="addon-wrapping">
                             <% } else { %>
-                                <input type="text" class="form-control" style="outline: auto;"  placeholder="0"
+                                <input type="text" name = "score1" class="form-control" style="outline: auto;"  placeholder="0"
                                 aria-label="Username" aria-describedby="addon-wrapping">
                             <% } %>
                         </div>
@@ -108,10 +109,10 @@
                                     <span class="input-group-text" id="addon-wrapping">Score</span>
                                 </div>
                                 <% if(result.HT2 == result.HT3){ %>
-                                    <input type="text" class="form-control" style="outline: auto;"  placeholder="1"
+                                    <input type="text" name = "score2" class="form-control" style="outline: auto;"  placeholder="1"
                                     aria-label="Username" aria-describedby="addon-wrapping">
                                 <% } else { %>
-                                    <input type="text" class="form-control" style="outline: auto;"  placeholder="0"
+                                    <input type="text" name = "score2" class="form-control" style="outline: auto;"  placeholder="0"
                                     aria-label="Username" aria-describedby="addon-wrapping">
                                 <% } %>
                             </div>
@@ -122,9 +123,10 @@
             </div>
             <div style="height: 25px;"></div>
             <div class = "d-flex" style="justify-content: flex-end;">
-                <a class="btn btn-danger w-80" style="margin-right:10px;" href="Alternative.html" role="button"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
-                <a class="btn btn-primary w-80" style="margin-right:10px;" href="#" role="button"> <i class="fa fa-check" aria-hidden="true"></i> Save</a>
+                <a class="btn btn-danger w-80" style="margin-right:10px;" href="" role="button"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+                <button type="submit" class="btn btn-outline-primary float-right">Save</button>
             </div>
+        </form>
     </section>
     <!-- contact_rsvp -->
     <div class="contact_rsvp">
