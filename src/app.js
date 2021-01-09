@@ -14,7 +14,7 @@ const user = require('./routes/user');
 const match = require('./routes/match');
 const player = require('./routes/player');
 const adminRoute = require('./routes/admin')
-
+const viewer = require("./routes/viewer")
 
 const app = express();
 
@@ -75,7 +75,8 @@ app.get('/', async(req, res)=> {
 app.use('/', user);
 app.use('/', match);
 app.use('/', player);
-app.use('/admin', adminRoute)
+app.use('/admin', adminRoute);
+app.use('/', viewer)
 
 app.listen(3000, () => {
     console.log(`Sever is listening at port ${3000}`);

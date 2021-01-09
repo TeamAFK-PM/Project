@@ -53,14 +53,15 @@
 						
             <% if (!locals.session.user) {%>
 							
-							<li class="nav-item"><a href="/register" class="nav-link"><span class = "text-white">Register</span></a></li>
-							<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
+							<li class="nav-item"><a href="/register" class="nav-link"><span ></span>Register</span></a></li>
+							<li class="nav-item"><a href="/login" class="nav-link"><span >Login</span></a></li>
 							
 						<%} else {%>
-							<li class="dropdown-acc nav-item "><a <% if (session.user.VaiTro == 1) {%> href = "/admin/manage" <%}else{%> href="/profile" <%}%>  class="nav-link"><span class = "text-white"><%= session.user.HoTen%></span></a>
+							<li class="dropdown-acc nav-item "><a <% if (session.user.VaiTro == 1) {%> href = "/admin/manage" <%}else{%> href="/profile" <%}%>  class="nav-link"><span><%= session.user.HoTen%></span></a>
 								<ul role = "menu" class="sub-menu-acc">
 									<% if (session.user.VaiTro == 1) {%>
-										<li><a href="/admin/manage">Manage</a></li>
+                    <li><a href="/admin/manage">Manage</a></li>
+                    <li><a href="/profile">  Information</a></li>
 									<%} else{%>
 										<li><a href="/profile">  Information</a></li>
 									<%}%>

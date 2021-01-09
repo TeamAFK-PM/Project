@@ -197,10 +197,17 @@ begin
 	end
 
 	insert into XepHang
+<<<<<<< HEAD
 	select CauThu1, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
 	and CauThu1 != CauThu2
 	insert into XepHang
+=======
+>>>>>>> 8001794690d1cf8cccee4191d37e238312e48ed4
 	select CauThu2, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
+	insert into XepHang
+	select CauThu1, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
+	and CauThu1 != CauThu2
+
 
 	declare @vong_dau int, @cau_thu_chien_thang nvarchar(50)
 	declare xep_hang_cursor cursor
@@ -230,6 +237,8 @@ begin
 	DEALLOCATE cursor_product
 end
 
-exec sp_xep_hang 2020
+exec sp_xep_hang 2019
+
+drop procedure sp_xep_hang
 
 
