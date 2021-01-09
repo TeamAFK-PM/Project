@@ -500,7 +500,6 @@ module.exports.postEditTournament = async (req, res) =>{
         win = player2;
         req.session.TD.HT3 = req.session.TD.HT2
     }
-
     try{
         const pool = await poolPromise;
         const pool1 = await poolPromise;
