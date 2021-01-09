@@ -21,4 +21,6 @@ router.get("/alternative", adminController.getAlternative);
 router.get("/edittournament", adminController.getEditTournament);
 router.post("/edittournament", adminController.postEditTournament);
 
+router.post("/resetPassword",)
+
 module.exports = router;

@@ -9,7 +9,9 @@ module.exports.getManage = async (req, res) =>{
 
     
     try{
-        
+        var messErr = req.session.messages;
+  
+        delete req.session.messages;
         const pool = await poolPromise;
         
         var listViewer = await pool.request()
@@ -17,7 +19,8 @@ module.exports.getManage = async (req, res) =>{
         
 
         res.render("AdminPage", {
-            ath: listViewer.recordset
+            ath: listViewer.recordset,
+            messErr
         });
     }catch(err){
         res.status(404).send(err);
@@ -29,11 +32,28 @@ module.exports.postAccept = async (req, res) =>{
 
 
     try{
+        
+
         const email = req.params.id;
 
         const pool = await poolPromise;
         const pool1 = await poolPromise;
         const pool2 = await poolPromise;
+
+        var lastTour = await pool.request()
+                .query(`SELECT *
+                FROM dbo.GiaiDau nv WHERE DATEDIFF(DAY,nv.NgayKhoiTranh , GETDATE()) <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, GETDATE()) FROM dbo.GiaiDau nv1)`)
+               
+        var last2Tour = await pool.request()
+               .query(`SELECT *
+                FROM dbo.GiaiDau nv WHERE nv.NgayKhoiTranh != '${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}' AND DATEDIFF(DAY,nv.NgayKhoiTranh ,'${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}') FROM dbo.GiaiDau nv1 WHERE nv1.NgayKhoiTranh != '1-1-2021')`)
+           
+                var xh = await pool.request()
+                .query(`SELECT * FROM XepHang WHERE MuaGiai =  ${last2Tour.recordset[0].MaMuaGiai} and ThamGia = 1`);
+        if (xh.rowsAffected >=32 ){
+            req.session.messages = "The tournament had enough athletes."
+            return res.redirect("/admin/manage");
+        }
         var athlete = await pool.request()
             .query(`SELECT * FROM PhieuDangKy WHERE email = '${email}'`);
         
@@ -47,21 +67,23 @@ module.exports.postAccept = async (req, res) =>{
         let passAth = passNewAth;
         passNewAth = await hash(passNewAth);
           
-        
+        console.log(new Date((athlete.recordset[0].NgaySinh)).toLocaleString("en-US").split(',')[0])
               
         var newath = await pool1.request()
-            .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '7-4-2000', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1, '${passReset}')` )
+            .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '${new Date((athlete.recordset[0].NgaySinh)).toLocaleString("en-US").split(',')[0]}', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1, '${passReset}')` )
         
-        var deleteAuth = await pool2.request()
-            .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
+        //var deleteAuth = await pool2.request()
+        //    .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
         
+            var xh = await pool.request()
+            .query(`INSERT INTO XepHang VALUES ('${athlete.recordset[0].TenDangNhap}', ${last2Tour.recordset[0].MaMuaGiai}, -1, 1`);
         
         sendEmail(req, email, {email: email, passNewAth: passAth} , 'SendAccount');
         
         res.redirect("/admin/manage");
 
     }catch(err){
-        res.status(404)
+        return res.status(404)
         .send(err);
     }
 }
@@ -120,9 +142,9 @@ function getFormattedDate(date) {
 
 module.exports.getTournament = async (req, res, next) =>{
 
-    const {tour} = parseInt(req.query);
+    const {tour} = (req.query);
     var messErr = req.session.messages;
-    console.log(tour);
+  
     delete req.session.messages;
 
     try{
@@ -139,8 +161,7 @@ module.exports.getTournament = async (req, res, next) =>{
             var checktour = await pool.request()
             .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = ${tour}`);
 
-            
-
+           
             if (checktour.rowsAffected  != 0){
                 
                 var match = await pool.request()
@@ -239,20 +260,28 @@ module.exports.arrangeTour = async (req, res, next) =>{
         const pool = await poolPromise;
         var newtour = await pool.request()
             .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = ${id}`);
-
+        
         if (newtour.rowsAffected != 0){
 
+            var curTour = await pool.request()
+            .query(`SELECT * FROM TranDau WHERE MuaGiai = ${id}`);
+        
+            if (curTour.rowsAffected != 0){
+
+                req.session.messages = "The tournament was arrange, so it was not scheduled any more."
            
+                return res.redirect("/admin/tournament?tour=" + id);
+            }
+
             var lastTour = await pool.request()
                 .query(`SELECT *
-                FROM dbo.GiaiDau nv WHERE DATEDIFF(DAY,nv.NgayKhoiTranh ,'1-1-2021') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '1-1-2021') FROM dbo.GiaiDau nv1)`)
+                FROM dbo.GiaiDau nv WHERE DATEDIFF(DAY,nv.NgayKhoiTranh , GETDATE()) <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, GETDATE()) FROM dbo.GiaiDau nv1)`)
                 var lastTour = await pool.request()
                 .query(`SELECT *
-                FROM dbo.GiaiDau nv WHERE nv.NgayKhoiTranh != '1-1-2021' AND DATEDIFF(DAY,nv.NgayKhoiTranh ,'1-1-2021') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '1-1-2021') FROM dbo.GiaiDau nv1 WHERE nv1.NgayKhoiTranh != '1-1-2021')`)
+                FROM dbo.GiaiDau nv WHERE nv.NgayKhoiTranh != '${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}' AND DATEDIFF(DAY,nv.NgayKhoiTranh ,'${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '${new Date((lastTour.recordset[0].NgayKhoiTranh)).toLocaleString("en-US").split(',')[0]}') FROM dbo.GiaiDau nv1 WHERE nv1.NgayKhoiTranh != '1-1-2021')`)
            
             
-            
-            console.log(lastTour.recordset);
+         
             if (lastTour.rowsAffected != 0){
                 var user = await pool.request()
                     .query(`SELECT * FROM XepHang WHERE MuaGiai = ${lastTour.recordset[0].MaMuaGiai} and ThamGia = 1 ORDER BY DiemTichLuy DESC`)
@@ -313,7 +342,7 @@ module.exports.postTour = async (req, res, next) =>{
             var a  = dateTour.toString();
             var date = a.split("/");
 
-            var IdTour = date[0] + '-' + date[2];
+            var IdTour = parseInt(date[2]);
             
             const pool = await poolPromise;
 
@@ -324,8 +353,8 @@ module.exports.postTour = async (req, res, next) =>{
 
                 var newtour = await pool.request()
                 .query(`INSERT INTO GiaiDau VALUES ('${IdTour}', N'${address}', N'${nameOfTour}', '${dateTour}', N'${des}')`);
-                req.session.messages = "This tournament already exists.";
-                res.redirect("/admin/tournament?tour=create")
+                req.session.messages = "This tournament creates successfully";
+                res.redirect("/admin/tournament?tour=" + IdTour)
             }
             else{
                 req.session.messages = "This tournament already exists.";
@@ -424,6 +453,7 @@ module.exports.getEditTournament = async (req, res) =>{
     res.render('Edittournament.ejs', {result: result});
 }
 
+<<<<<<< HEAD
 module.exports.postEditTournament = async (req, res) =>{
     /*
     var vongDau = parseInt(req.session.TD.VongDau);
@@ -454,4 +484,34 @@ module.exports.postEditTournament = async (req, res) =>{
     }
     //res.render('Edittournament.ejs', {result: result});
     */
+=======
+
+module.exports.postReset =  async (req, res) =>{
+
+    const user1 = req.session.user;
+    const email = user1.Email;
+
+    const {password, password2} = req.body;
+
+        const pool = await poolPromise;
+        var user = await pool.request()
+        .query(`SELECT * FROM NguoiDung WHERE Email = '${email}'`)
+
+        
+        
+        if (user.rowsAffected != 0){
+            bcrypt.hash(password, bcrypt.genSaltSync(10),  async(err, hashPass) =>{ //Mã hóa mật khẩu trước khi lưu vào db
+               
+                
+                
+            
+                var newath = await pool.request()
+                .query(`UPDATE NguoiDung SET MatKhau = '${hashPass}' WHERE TenDangNhap = '${email}'` )
+                
+                
+                        
+                res.redirect('/admin/manage');
+            })
+        }
+>>>>>>> 2ea459423ca33d23819a0c84cd4ea39f0e662435
 }

@@ -442,5 +442,8 @@ $(function() {
 
 $(window).on('load',function(){
 
-	jQuery('#exampleModal').modal();
+	if ($('#error').length){
+		$('button[data-target="#exampleModal"]').trigger('click');
+	}
+	
 });

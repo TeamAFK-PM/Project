@@ -49,7 +49,7 @@
                                             <%= newath.sex %>
                                             <%="checked"%>
                                         <%}}%>
-                                        >
+                                        required>
                                     <label class="form-check-label" for="gender1">
                                         Male
                                     </label>
@@ -110,22 +110,12 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom05">Identification Card</label>
                         <input type="text" style="outline: 1px solid black;" class="form-control"
-                            id="validationCustom05" placeholder="Email"<% if(locals.newath) {%> value="<%= newath.cmnd %>" <% } %>  name = "cmnd" required>
+                            id="validationCustom05" placeholder="Identification Card"<% if(locals.newath) {%> value="<%= newath.cmnd %>" <% } %>  name = "cmnd" required>
                         <div class="invalid-feedback">
                             Please enter a Identification Card.
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <!-- Zip Code -->
-								
-						<label for="validationCustom06">select tournaments</label>
-						<input  type="text" style="outline: 1px solid black;" class="form-control"
-                                    id="validationCustom06" name = 'tour'required>
-							
-                        <div class="invalid-feedback">
-                            Please enter a tournament.
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="form-row">
