@@ -74,17 +74,20 @@ module.exports.postRegister = async(req, res) => {
     const {name, sex, phone, email, birthday, cmnd, tour, address} = req.body;
 
     const body = req.body;
-    console.log(birthday);
+  
     try{
         const pool = await poolPromise;
        
         var results = await pool.request()
-            .query(`select * from NguoiDung where HoTen = '${name}' and NgaySinh = '${birthday}' and GioiTinh = '${sex}' and SoDienThoai = '${phone}' and DiaChi = '${address}' and Email = '${email}' or email = '${email}'`);
+            .query(`select * from NguoiDung where Email = '${email}'`);
+            var pdk = await pool.request()
+            .query(`select * from PhieuDangKy where Email = '${email}'`);
         
-        if (results.rowsAffected != 0){
+        console.log(results)
+        if (results.rowsAffected != 0 || pdk.rowsAffected != 0){
             
             
-            res.render('register', {newath: body, message: "Email is already exists"});
+            return res.render('register', {newath: body, message: "Email is already exists"});
         }
         else{
             
