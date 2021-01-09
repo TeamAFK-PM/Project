@@ -28,7 +28,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= message%>
+            <% if (locals.message) {%><%= message%><%}%>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

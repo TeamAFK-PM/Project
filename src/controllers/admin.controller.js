@@ -140,6 +140,8 @@ function getFormattedDate(date) {
     return month + '/' + day + '/' + year;
   }
 
+
+
 module.exports.getTournament = async (req, res, next) =>{
 
     const {tour} = (req.query);
