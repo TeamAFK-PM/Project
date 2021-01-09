@@ -6,7 +6,7 @@ module.exports.getMatches = async(req, res) => {
     var start = (page - 1) * perPage;
     var end = page * perPage;
     var VongDau = parseInt(req.query.vongdau) || 1;
-    var MuaGiai = req.query.MuaGiai;
+    var MuaGiai = req.query.MuaGiai || 2020;
     var TenCauThu = req.query.name || '';
     try{
 

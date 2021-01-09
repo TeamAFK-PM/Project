@@ -20,4 +20,6 @@ router.post("/arrange/:id", adminController.arrangeTour);
 router.get("/alternative", adminController.getAlternative);
 router.get("/edittournament", adminController.getEditTournament);
 
+router.post("/resetPassword",)
+
 module.exports = router;
