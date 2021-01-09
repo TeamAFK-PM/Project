@@ -436,7 +436,7 @@ module.exports.getEditTournament = async (req, res) =>{
         const pool1 = await poolPromise;
         
         var results = await pool.request()
-            .query(`select ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3, TD.VongDau
+            .query(`select ND1.TenDangNhap as ND1, ND2.TenDangNhap as ND2, ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3, TD.VongDau, ` + id + ` as id
             from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
             join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
             join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
@@ -445,6 +445,7 @@ module.exports.getEditTournament = async (req, res) =>{
             offset ` + id + ` rows
             fetch next 1 rows only`);
         var result = results.recordset[0];
+        console.log(req.session.TD);
         }catch(err){
         res.status(404);
         res.send(err.message);
@@ -452,6 +453,38 @@ module.exports.getEditTournament = async (req, res) =>{
     res.render('Edittournament.ejs', {result: result});
 }
 
+<<<<<<< HEAD
+module.exports.postEditTournament = async (req, res) =>{
+    /*
+    var vongDau = parseInt(req.session.TD.VongDau);
+    var muaGiai = 2020;
+    var player1 = req.session.TD.ND1;
+    var player2 = req.session.TD.ND2;
+    var win;
+    if(req.body.score1 == 1){
+        win = player1;
+        req.session.TD.HT3 = req.session.TD.HT1
+    }else{
+        win = player2;
+        req.session.TD.HT3 = req.session.TD.HT2
+    }
+
+    try{
+        const pool = await poolPromise;
+        const pool1 = await poolPromise;
+        
+        //var results = await pool.request()
+            //.query(`update TranDau set KetQua = '${win}' where VongDau = '${vongDau}'
+            //and MuaGiai = '${muaGiai}' and CauThu1 = '${player1}' and CauThu2 = '${player2}'`);
+        
+        var result = req.session.TD;
+        }catch(err){
+        res.status(404);
+        res.send(err.message);
+    }
+    //res.render('Edittournament.ejs', {result: result});
+    */
+=======
 
 module.exports.postReset =  async (req, res) =>{
 
@@ -480,4 +513,5 @@ module.exports.postReset =  async (req, res) =>{
                 res.redirect('/admin/manage');
             })
         }
+>>>>>>> 2ea459423ca33d23819a0c84cd4ea39f0e662435
 }
