@@ -9,42 +9,14 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <%- include('./partials/head'); %>
-  <script type="text/javascript">
-    $(window).on('load',function(){
-        $('#exampleModal').modal('show');
-    });
-  </script>
+  
 </head>
 
 <body class="bradcam_area breadcam_bg_2" style="padding:0px !important ;">
   
   <%- include('./partials/header'); %>
 
-  <%if (locals.messErr) { %>
-                      
-              
-    <!-- Modal -->
-    
-    <div class="modal fade show" id="exampleModal" tabindex="-1" aria-hidden="false">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <%= messErr %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue</button>
-            </div>
-          </div>
-        </div>
-      </div>
-<% } %>
-
+  
   <div class="bradcam_area breadcam_bg_2">
     <div class="container">
       <div class="row">
@@ -57,7 +29,31 @@
     </div>
   </div>
  
-  
+  <%if (locals.messErr) { %>
+                      
+                   
+    <!-- Modal -->
+    
+    <<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<% } %>
   <div style="height: 30px;"></div>
   </div>
   
@@ -341,7 +337,7 @@
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
-        <td id="3D" class="block"><%if (locals.vong2) {%><%if (vong1[7]) {%><%=vong2[7].KetQua%><%}%><%}%></td>
+        <td id="3D" class="block"><%if (locals.vong2) {%><%if (vong2[7]) {%><%=vong2[7].KetQua%><%}%><%}%></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
         <td class="notblock"></td>
@@ -416,7 +412,9 @@
       </tr>
     </table>
     <div class="d-flex justify-content-around">
-      <button type="button" class="btn btn-success btn-lg">Arrange this match</button>
+      <% if (method != 'create'){ %>
+      <button value = "<%=method%>" type="submit" class="btn btn-success btn-lg arrange">Arrange this match</button>
+      <%}%>
       <button type="submit" class="btn btn-primary btn-lg">Save</button>
     </div>
     <div style="height: 60px;"></div>
@@ -535,7 +533,7 @@
 <script src="/js/vendor/modernizr-3.5.0.min.js"></script>
   <script src="/js/vendor/jquery-1.12.4.min.js"></script>
   <script src="/js/popper.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="/js/owl.carousel.min.js"></script>
   <script src="/js/isotope.pkgd.min.js"></script>
   <script src="/js/ajax-form.js"></script>
@@ -776,10 +774,6 @@
       });
     });
   </script>
-  <script type="text/javascript">
-    $(window).on('load',function(){
-        $('#exampleModal').modal('show');
-    });
-  </script>
+  
 </html>
 <!doctype html>

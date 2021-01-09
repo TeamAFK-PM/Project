@@ -450,3 +450,11 @@ $(".accept-ath").click(function (e) {
 		if (re == false) return false;
 		$(this).parent().parent().css("display", "none");
 	}); 
+
+$(".arrange").on("click", function () {
+	
+	const id = $(this).attr('value');
+	$('form').attr('action','/admin/arrange/'+ id);
+  });
+
+  

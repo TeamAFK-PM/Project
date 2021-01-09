@@ -120,9 +120,9 @@ function getFormattedDate(date) {
 
 module.exports.getTournament = async (req, res, next) =>{
 
-    const {tour} = req.query;
+    const {tour} = parseInt(req.query);
     var messErr = req.session.messages;
-    console.log(messErr);
+    console.log(tour);
     delete req.session.messages;
 
     try{
@@ -137,16 +137,16 @@ module.exports.getTournament = async (req, res, next) =>{
             const pool = await poolPromise;
 
             var checktour = await pool.request()
-            .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = '${tour}'`);
+            .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = ${tour}`);
 
             
 
             if (checktour.rowsAffected  != 0){
-               
+                
                 var match = await pool.request()
-                        .query(`SELECT * FROM TranDau WHERE MuaGiai = '${tour}' ORDER BY VongDau`);
+                        .query(`SELECT * FROM TranDau WHERE MuaGiai = ${tour} ORDER BY VongDau`);
 
-
+                
                 var vong1 = [],vong2 = [], vong3 = [], vong4 = [], vong5 = [];
 
                 if (match.rowsAffected != 0){
@@ -158,13 +158,18 @@ module.exports.getTournament = async (req, res, next) =>{
                         
                         var user2 = await pool.request()
                             .query(`SELECT * FROM NguoiDung WHERE TenDangNhap = '${match.recordset[i].CauThu2}' `);
+
+                        if (match.recordset[i].KetQua != null){
                             var user3 = await pool.request()
                             .query(`SELECT * FROM NguoiDung WHERE TenDangNhap = '${match.recordset[i].KetQua}' `);
+                            match.recordset[i].KetQua = user3.recordset[0].HoTen 
                         
-                     
+                        }else{
+
+                        }
                         match.recordset[i].CauThu1 = user1.recordset[0].HoTen;
                         match.recordset[i].CauThu2 = user2.recordset[0].HoTen;
-                        match.recordset[i].KetQua = user3.recordset[0].HoTen;
+                      
                 
 
                         if (match.recordset[i].VongDau == 1){
@@ -201,7 +206,7 @@ module.exports.getTournament = async (req, res, next) =>{
 
                     
                 }
-              
+                
                 res.render("tree", {
                     method : tour,
                     messErr: messErr,
@@ -228,10 +233,67 @@ module.exports.getTournament = async (req, res, next) =>{
 
 module.exports.arrangeTour = async (req, res, next) =>{
 
+    const id = req.params.id;
     try{
 
-        let place = getRandomMatch()
+        const pool = await poolPromise;
+        var newtour = await pool.request()
+            .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = ${id}`);
 
+        if (newtour.rowsAffected != 0){
+
+           
+            var lastTour = await pool.request()
+                .query(`SELECT *
+                FROM dbo.GiaiDau nv WHERE DATEDIFF(DAY,nv.NgayKhoiTranh ,'1-1-2021') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '1-1-2021') FROM dbo.GiaiDau nv1)`)
+                var lastTour = await pool.request()
+                .query(`SELECT *
+                FROM dbo.GiaiDau nv WHERE nv.NgayKhoiTranh != '1-1-2021' AND DATEDIFF(DAY,nv.NgayKhoiTranh ,'1-1-2021') <= ALL (SELECT DATEDIFF(DAY,nv1.NgayKhoiTranh, '1-1-2021') FROM dbo.GiaiDau nv1 WHERE nv1.NgayKhoiTranh != '1-1-2021')`)
+           
+            
+            
+            console.log(lastTour.recordset);
+            if (lastTour.rowsAffected != 0){
+                var user = await pool.request()
+                    .query(`SELECT * FROM XepHang WHERE MuaGiai = ${lastTour.recordset[0].MaMuaGiai} and ThamGia = 1 ORDER BY DiemTichLuy DESC`)
+                
+                let sl = user.rowsAffected[0];
+            
+                let place = getRandomMatch(sl);
+
+                
+                console.log(newtour.recordset[0].MaMuaGiai);
+                for (let i = 0; i < place.length; i = i + 2){
+                    if (place[i + 1] == -1 && place[i] == -1)
+                        continue
+
+                    var player1, player2;
+                    if (place[i] == -1){
+                        player1 = user.recordset[i + 1];    
+                    }
+                    else{
+                        player1 = user.recordset[i];
+                    }
+                    if (place[i + 1] == -1){
+                        player2 = user.recordset[i];    
+                    }
+                    else{
+                        player2 = user.recordset[i + 1];
+                    }
+                   
+                  
+                    var capdau = await pool.request()
+                        .query(`INSERT INTO TranDau VALUES (${newtour.recordset[0].MaMuaGiai}, 1,  '${player1.CauThu}','${player2.CauThu}', null)`);
+                       
+                }
+                
+            }
+            req.session.messages = "Arrange these matches successfully";
+            res.redirect("/admin/tournament?tour=" + id);
+        }else{
+            req.session.messages = "This tournament does not exists";
+            res.redirect("/admin/tournament?tour=create");
+        }
     }
     catch(err){
 
@@ -251,17 +313,17 @@ module.exports.postTour = async (req, res, next) =>{
             var a  = dateTour.toString();
             var date = a.split("/");
 
-            var IdTour = date[0] + '/' + date[2];
+            var IdTour = date[0] + '-' + date[2];
             
             const pool = await poolPromise;
 
             var checktour = await pool.request()
-            .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = '${IdTour}'`);
+            .query(`SELECT * FROM GiaiDau WHERE MaMuaGiai = ${IdTour}`);
 
             if (checktour.rowsAffected == 0){
 
                 var newtour = await pool.request()
-                .query(`INSERT INTO GiaiDau VALUES ('${IdTour}', '${address}', '${nameOfTour}', '${dateTour}', '${des}')`);
+                .query(`INSERT INTO GiaiDau VALUES ('${IdTour}', N'${address}', N'${nameOfTour}', '${dateTour}', N'${des}')`);
                 req.session.messages = "This tournament already exists.";
                 res.redirect("/admin/tournament?tour=create")
             }
@@ -287,7 +349,7 @@ module.exports.postTour = async (req, res, next) =>{
             }else{
 
                 var updateTour = pool.request()
-                .query(`UPDATE GiaiDau SET NgayKhoiTranh = '${dateTour}', DiaDiem = N'${address}', Mota = N'${des}', TenGiai = N'${nameOfTour}' WHERE MaMuaGiai = '${tour}'`)
+                .query(`UPDATE GiaiDau SET NgayKhoiTranh = '${dateTour}', DiaDiem = N'${address}', Mota = N'${des}', TenGiai = N'${nameOfTour}' WHERE MaMuaGiai = ${tour}`)
 
             
                 
@@ -324,7 +386,7 @@ module.exports.getAlternative = async (req, res) =>{
             .query(`select ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3, TD.VongDau from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
             join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
             join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
-            where TD.MuaGiai = '${muaGiai}' and TD.VongDau = '${vongDau}'`);
+            where TD.MuaGiai = ${muaGiai} and TD.VongDau = '${vongDau}'`);
 
 
         }catch(err){
@@ -349,7 +411,7 @@ module.exports.getEditTournament = async (req, res) =>{
             from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
             join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
             join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
-            where TD.MuaGiai = '${muaGiai}' and TD.VongDau = '${vongDau}'
+            where TD.MuaGiai = ${muaGiai} and TD.VongDau = '${vongDau}'
             order by TD.VongDau
             offset ` + id + ` rows
             fetch next 1 rows only`);

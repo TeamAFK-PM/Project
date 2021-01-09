@@ -38,7 +38,7 @@ create table NguoiDung(
 
 
 create table GiaiDau(
-	MaMuaGiai nvarchar(30) primary key,
+	MaMuaGiai int primary key,
 	DiaDiem nvarchar(100),
 	TenGiai nvarchar(30),
 	NgayKhoiTranh date,
@@ -50,8 +50,9 @@ create table VongDau(
 	TenVongDau nvarchar(50) not null
 )
 
+
 create table TranDau(
-	MuaGiai nvarchar(30) not null,
+	MuaGiai int not null,
 	VongDau int not null,
 	CauThu1 nvarchar(50) not null,
 	CauThu2 nvarchar(50) not null,
@@ -76,8 +77,9 @@ create table PhieuDangKy(
 
 create table XepHang(
 	CauThu nvarchar(50),
-	MuaGiai nvarchar(30),
+	MuaGiai int,
 	DiemTichLuy int default 0,
+	ThamGia bit default 1,
 	primary key(CauThu, MuaGiai),
 	constraint fk_xephang_cauthu foreign key(CauThu) references NguoiDung(TenDangNhap),
 	constraint fk_xephang_muagiai foreign key(MuaGiai) references GiaiDau(MaMuaGiai)
@@ -195,9 +197,9 @@ begin
 	end
 
 	insert into XepHang
-	select CauThu1, MuaGiai, 0 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
+	select CauThu1, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
 	insert into XepHang
-	select CauThu2, MuaGiai, 0 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
+	select CauThu2, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
 
 	declare @vong_dau int, @cau_thu_chien_thang nvarchar(50)
 	declare xep_hang_cursor cursor
@@ -229,5 +231,4 @@ end
 
 exec sp_xep_hang 2020
 
-select * from	
-delete XepHang
+
