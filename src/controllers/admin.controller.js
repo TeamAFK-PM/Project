@@ -67,17 +67,17 @@ module.exports.postAccept = async (req, res) =>{
         let passAth = passNewAth;
         passNewAth = await hash(passNewAth);
           
-        console.log(new Date((athlete.recordset[0].NgaySinh)).toLocaleString("en-US").split(',')[0])
+       
               
         var newath = await pool1.request()
             .query(`INSERT INTO NguoiDung VALUES ('${email}', '${passNewAth}', N'${newAthlete.HoTen}', 2, '${new Date((athlete.recordset[0].NgaySinh)).toLocaleString("en-US").split(',')[0]}', N'${newAthlete.DiaChi}', '${newAthlete.Email}', '${newAthlete.SoDienThoai}', ${newAthlete.Gioitinh = newAthlete.Gioitinh  == true? 1: 0}, '${newAthlete.CMND}', 1, '${passReset}')` )
         
-        //var deleteAuth = await pool2.request()
-        //    .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
-        
+        var deleteAuth = await pool2.request()
+            .query(`DELETE FROM PhieuDangKy WHERE Email = '${email}'`);
+    
             var xh = await pool.request()
-            .query(`INSERT INTO XepHang VALUES ('${athlete.recordset[0].TenDangNhap}', ${last2Tour.recordset[0].MaMuaGiai}, -1, 1`);
-        
+            .query(`INSERT INTO XepHang VALUES ('${email}', ${last2Tour.recordset[0].MaMuaGiai}, -1, 1)`);
+          
         sendEmail(req, email, {email: email, passNewAth: passAth} , 'SendAccount');
         
         res.redirect("/admin/manage");
@@ -140,6 +140,8 @@ function getFormattedDate(date) {
     return month + '/' + day + '/' + year;
   }
 
+
+
 module.exports.getTournament = async (req, res, next) =>{
 
     const {tour} = (req.query);
@@ -167,11 +169,12 @@ module.exports.getTournament = async (req, res, next) =>{
                 var match = await pool.request()
                         .query(`SELECT * FROM TranDau WHERE MuaGiai = ${tour} ORDER BY VongDau`);
 
+              
                 
                 var vong1 = [],vong2 = [], vong3 = [], vong4 = [], vong5 = [];
 
                 if (match.rowsAffected != 0){
-                    
+                
                     for (let i = 0; i < match.recordset.length; i++){
                         
                         var user1 = await pool.request()
@@ -191,10 +194,12 @@ module.exports.getTournament = async (req, res, next) =>{
                         match.recordset[i].CauThu1 = user1.recordset[0].HoTen;
                         match.recordset[i].CauThu2 = user2.recordset[0].HoTen;
                       
-                
+                        
 
                         if (match.recordset[i].VongDau == 1){
                             vong1.push(match.recordset[i]);
+                            if (vong1[vong1.length - 1].CauThu1 === vong1[vong1.length - 1].CauThu2)
+                                vong1[vong1.length - 1].CauThu2 = '';
                         }
                         else if (match.recordset[i].VongDau == 2){
                             vong2.push(null);
@@ -202,7 +207,12 @@ module.exports.getTournament = async (req, res, next) =>{
                             for (let j = 0; j < vong1.length; j++){
                                 if (vong1[j].KetQua == match.recordset[i].KetQua)
                                     vong2[vong2.length - 1] = match.recordset[i];
-                            }   
+                                   
+                            }    
+                            if(vong2[vong2.length - 1].CauThu1 != null){
+                                if (vong2[vong2.length - 1].CauThu1 === vong2[vong2.length - 1].CauThu2)
+                                     vong2[vong2.length - 1].CauThu2 = '';
+                            }  
                         }
                         else if (match.recordset[i].VongDau == 3){
                             vong3.push(null);
@@ -210,7 +220,14 @@ module.exports.getTournament = async (req, res, next) =>{
                             for (let j = 0; j < vong2.length; j++){
                                 if (vong2[j].KetQua == match.recordset[i].KetQua)
                                     vong3[vong3.length - 1] = match.recordset[i];
+
+                                
                             }   
+                            if (vong3[vong3.length - 1] != null ){
+                                if (vong3[vong3.length - 1].CauThu1 === vong3[vong3.length - 1].CauThu2)
+                                 vong3[vong3.length - 1].CauThu2 = '';
+
+                             }
                         }
                         else if (match.recordset[i].VongDau == 4){
                             vong4.push(null);
@@ -218,13 +235,23 @@ module.exports.getTournament = async (req, res, next) =>{
                             for (let j = 0; j < vong3.length; j++){
                                 if (vong3[j].KetQua == match.recordset[i].KetQua)
                                     vong4[vong4.length - 1] = match.recordset[i];
-                            }   
+                                    
+                            }
+                            if (vong4[vong4.length - 1]!= null){
+                                if (vong4[vong4.length - 1].CauThu1 === vong4[vong4.length - 1].CauThu2)
+                                vong4[vong4.length - 1].CauThu2 = '';  
+                            } 
                         }
                         else if (match.recordset[i].VongDau == 5){
                             vong5.push(match.recordset[i]);
+                            
+                            if (vong5[vong5.length - 1].CauThu1 === vong5[vong5.length - 1].CauThu2)
+                            vong5[vong5.length - 1].CauThu2 = '';
+                            
                         }
+                       
                     }
-
+                   
                     
                 }
                 
@@ -287,29 +314,35 @@ module.exports.arrangeTour = async (req, res, next) =>{
                     .query(`SELECT * FROM XepHang WHERE MuaGiai = ${lastTour.recordset[0].MaMuaGiai} and ThamGia = 1 ORDER BY DiemTichLuy DESC`)
                 
                 let sl = user.rowsAffected[0];
-            
+               
                 let place = getRandomMatch(sl);
 
-                
-                console.log(newtour.recordset[0].MaMuaGiai);
-                for (let i = 0; i < place.length; i = i + 2){
-                    if (place[i + 1] == -1 && place[i] == -1)
+               
+                let i = 0;
+                let dem = 0;
+               while (i < place.length){
+                    if (place[i + 1] == -1 && place[i] == -1){
+                        i = i + 2;
                         continue
-
+                    }
                     var player1, player2;
                     if (place[i] == -1){
-                        player1 = user.recordset[i + 1];    
+                      
+                        player1 = user.recordset[dem];    
                     }
                     else{
-                        player1 = user.recordset[i];
+                        player1 = user.recordset[dem];
+                        dem = dem + 1;
                     }
                     if (place[i + 1] == -1){
-                        player2 = user.recordset[i];    
+                        player2 = user.recordset[dem];    
                     }
                     else{
-                        player2 = user.recordset[i + 1];
+                        player2 = user.recordset[dem];
+                        dem = dem + 1
                     }
-                   
+                    i = i + 2;
+                    console.log(player1, player2)
                   
                     var capdau = await pool.request()
                         .query(`INSERT INTO TranDau VALUES (${newtour.recordset[0].MaMuaGiai}, 1,  '${player1.CauThu}','${player2.CauThu}', null)`);
@@ -453,7 +486,6 @@ module.exports.getEditTournament = async (req, res) =>{
     res.render('Edittournament.ejs', {result: result});
 }
 
-<<<<<<< HEAD
 module.exports.postEditTournament = async (req, res) =>{
     /*
     var vongDau = parseInt(req.session.TD.VongDau);
@@ -468,7 +500,6 @@ module.exports.postEditTournament = async (req, res) =>{
         win = player2;
         req.session.TD.HT3 = req.session.TD.HT2
     }
-
     try{
         const pool = await poolPromise;
         const pool1 = await poolPromise;
@@ -484,8 +515,7 @@ module.exports.postEditTournament = async (req, res) =>{
     }
     //res.render('Edittournament.ejs', {result: result});
     */
-=======
-
+}
 module.exports.postReset =  async (req, res) =>{
 
     const user1 = req.session.user;
@@ -513,5 +543,4 @@ module.exports.postReset =  async (req, res) =>{
                 res.redirect('/admin/manage');
             })
         }
->>>>>>> 2ea459423ca33d23819a0c84cd4ea39f0e662435
 }

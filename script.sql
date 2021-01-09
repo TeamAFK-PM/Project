@@ -198,6 +198,7 @@ begin
 
 	insert into XepHang
 	select CauThu1, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
+	and CauThu1 != CauThu2
 	insert into XepHang
 	select CauThu2, MuaGiai, 0, 1 from TranDau where VongDau = 1 and MuaGiai = @mua_giai
 
