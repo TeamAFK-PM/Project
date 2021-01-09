@@ -2,7 +2,7 @@ const { poolPromise, sql } = require('../config/db')
 
 module.exports.getMatches = async(req, res) => {
     var VongDau = parseInt(req.query.vongdau) || 1;
-    var MuaGiai = req.query.MuaGiai || 2020;
+    var MuaGiai = req.query.MuaGiai;
     var TenCauThu = req.query.name || '';
     try{
 
