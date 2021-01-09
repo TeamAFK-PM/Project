@@ -51,15 +51,19 @@
 						<li class="nav-item"><a href="/player" class="nav-link"><span>Players</span></a></li>
 						<li class="nav-item"><a href="/match" class="nav-link"><span >Matchs</span></a></li>
 						
-						<% if (!locals.session.user) {%>
+            <% if (!locals.session.user) {%>
 							
-							<li class="nav-item"><a href="/register" class="nav-link"><span >Register</span></a></li>
-							<li class="nav-item"><a href="/login" class="nav-link"><span >Login</span></a></li>
+							<li class="nav-item"><a href="/register" class="nav-link"><span class = "text-white">Register</span></a></li>
+							<li class="nav-item"><a href="/login" class="nav-link"><span class = "text-white">Login</span></a></li>
 							
 						<%} else {%>
-							<li class="dropdown-acc nav-item "><a href="/profile" class="nav-link"><span><%= session.user.HoTen%></span></a>
+							<li class="dropdown-acc nav-item "><a <% if (session.user.VaiTro == 1) {%> href = "/admin/manage" <%}else{%> href="/profile" <%}%>  class="nav-link"><span class = "text-white"><%= session.user.HoTen%></span></a>
 								<ul role = "menu" class="sub-menu-acc">
-									<li><a href="/profile">Information</a></li>
+									<% if (session.user.VaiTro == 1) {%>
+										<li><a href="/admin/manage">Manage</a></li>
+									<%} else{%>
+										<li><a href="/profile">  Information</a></li>
+									<%}%>
 									<li><a href="/logout">Log out</a></li>
 								</ul>
 							</li>
@@ -139,7 +143,7 @@
                 </tbody>
               </table>
               <div>
-                <button class="btn btn-success float-right">Create a tournament</button>
+                <a class="btn btn-success float-right" href="/admin/tournament?tour=create">Create a tournament</a>
               </div>
             </div>
           </div>

@@ -389,10 +389,14 @@
       </tr>
     </table>
     <div class="d-flex justify-content-around">
-      <% if (method != 'create'){ %>
-      <button value = "<%=method%>" type="submit" class="btn btn-success btn-lg arrange">Arrange this match</button>
+      <% if (locals.session.user) { %>
+        <% if (user.VaiTro === 1) { %>
+        <% if (method != 'create'){ %>
+          <button value = "<%=method%>" type="submit" class="btn btn-success btn-lg arrange">Arrange this match</button>
+          <%}%>
+          <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        <%}%>
       <%}%>
-      <button type="submit" class="btn btn-primary btn-lg">Save</button>
     </div>
     <div style="height: 60px;"></div>
   </div>
