@@ -20,7 +20,6 @@ router.route('/register')
 
 router.get('/logout', authorize.auth, controllers.logout)
 
-router.get('/a', authorize.auth, controllers.index)
 
 router.get("/forgot", controllers.getforgot);
 router.post("/forgot", controllers.postForgot);

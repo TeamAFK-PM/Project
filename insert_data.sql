@@ -2,8 +2,8 @@
 
 --Tạo giải đấu
 insert into GiaiDau
-values(2019, N'Hoàng Sa'),
-(2020, N'Trường Sa')
+values(2019,N'Hồ Chí Minh', N'Hoàng Sa','2019-01-01', N'Giải đấu quy tụ những cầu thủ hàng đầu đất nước'),
+(2020, N'Hồ Chí Minh', N'Hoàng Sa','2020-01-01', N'Giải đấu quy tụ những cầu thủ hàng đầu đất nước')
 
 --Tạo trận đấu mùa giải 2019
 insert into TranDau
