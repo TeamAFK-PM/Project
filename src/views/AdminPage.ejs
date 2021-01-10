@@ -62,6 +62,7 @@
 									<% if (session.user.VaiTro == 1) {%>
                     <li><a href="/admin/manage">Manage</a></li>
                     <li><a href="/profile">  Information</a></li>
+                    <li><a href="/admin/alternative">Edit matches</a></li>
 									<%} else{%>
 										<li><a href="/profile">  Information</a></li>
 									<%}%>
@@ -143,7 +144,16 @@
                   
                 </tbody>
               </table>
-              <div>
+              <div style="display: inline-block; float: right;">
+                <a class="btn btn-success float-right" href="/admin/tournament?tour=2019" >Tournament 2019</a>
+                <br>
+                <br>
+                <a class="btn btn-success float-right" href="/admin/tournament?tour=2020" >Tournament 2020</a>
+                <br>
+                <br>
+                <a class="btn btn-success float-right" href="/admin/tournament?tour=2021" >Tournament 2021</a>
+                <br>
+                <br>
                 <a class="btn btn-success float-right" href="/admin/tournament?tour=create">Create a tournament</a>
               </div>
             </div>
