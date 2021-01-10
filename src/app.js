@@ -1,7 +1,10 @@
+const port = process.env.PORT || 3000;
 require('dotenv').config()
 
 seKey = process.env.SESSION_SECRET
-console.log(seKey)
+
+
+
 const { poolPromise, sql } = require('./config/db');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -79,5 +82,5 @@ app.use('/admin', adminRoute);
 app.use('/', viewer)
 
 app.listen(3000, () => {
-    console.log(`Sever is listening at port ${3000}`);
+    console.log(`Sever is listening at port ${port}`);
 })

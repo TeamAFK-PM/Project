@@ -11,6 +11,18 @@ const config = {
       }
 }
 
+const config1 = {
+  user: 'Thanh',
+  password: 'Abc12345',
+  server: 'mssql-18158-0.cloudclusters.net', // You can use 'localhost\\instance' to connect to named instance
+  database: 'QuanLyCauThu',
+  port: 18176,
+  "options": {
+    "encrypt": true,
+    "enableArithAbort": true
+    }
+}
+
 
 const poolPromise = new sql.ConnectionPool(config)
   .connect()

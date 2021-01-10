@@ -48,7 +48,7 @@
               <div class="mb-4" style="width: 800px">
                 <div class="bg-white rounded-lg shadow p-4">
                   <div class="d-flex" style="justify-content:flex-end;  ">
-                  <a class="btn btn-primary w-80" style="margin-right:10px;" href="/admin/edittournament?vongdau=<%=  results.recordset[i].VongDau%>&id=<%= i%>" role="button"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                  <a class="btn btn-primary w-80" style="margin-right:10px;" href="/admin/edittournament?vongdau=<%= results.recordset[i].VongDau%>&CauThu1=<%=results.recordset[i].CauThu1%>&CauThu2=<%=results.recordset[i].CauThu2%>&tour=<%=results.recordset[i].MuaGiai%>" role="button"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                   <a class="btn btn-danger w-80" href="#" role="button"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a>
                   </div>
                   <div class="h5 font-weight-bold text-center mb-4">17th October 2019 , 8:00</div>
@@ -65,10 +65,10 @@
                       <div class="h4 font-weight-bold figure"><%= results.recordset[i].HT1%></div>
                       <div style="height: 25px;"></div>
                       <div class="h4 font-weight-bold">
-                        <% if(results.recordset[i].HT3 == results.recordset[i].HT1){ %>
-                          <div class="h4 font-weight-bold" style="color: red;">1</div>
+                        <% if(results.recordset[i].CauThu1 == results.recordset[i].KetQua){ %>
+                          <div class="h4 font-weight-bold" style="color: red;">Win</div>
                         <% } else{ %>  
-                            <div class="h4 font-weight-bold" style="color: black;">0</div>
+                            <div class="h4 font-weight-bold" style="color: black;">Lose</div>
                         <% } %>
                       </div>
                     </div>
@@ -77,10 +77,10 @@
                         <div class="h4 font-weight-bold figure"><%= results.recordset[i].HT2%></div>
                         <div style="height: 25px;"></div>
                         <div class="h4 font-weight-bold">
-                          <% if(results.recordset[i].HT3 == results.recordset[i].HT2){ %>
-                            <div class="h4 font-weight-bold" style="color: red;">1</div>
+                          <% if(results.recordset[i].CauThu2 == results.recordset[i].KetQua){ %>
+                            <div class="h4 font-weight-bold" style="color: red;">Win</div>
                           <% } else{ %>  
-                              <div class="h4 font-weight-bold" style="color: black;">0</div>
+                              <div class="h4 font-weight-bold" style="color: black;">Lose</div>
                           <% } %>
                         </div>
                       </div>

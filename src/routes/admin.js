@@ -17,9 +17,9 @@ router.get("/tournament", authorize.auth, adminController.getTournament);
 router.post("/tournament", authorize.auth, adminController.postTour);
 router.post("/arrange/:id", authorize.auth, adminController.arrangeTour);
 
-router.get("/alternative", authorize.auth, adminController.getAlternative);
-router.get("/edittournament", authorize.auth, adminController.getEditTournament);
-router.post("/edittournament", authorize.auth, adminController.postEditTournament);
+router.get("/alternative", adminController.getAlternative);
+router.get("/edittournament",adminController.getEditTournament);
+router.post("/edittournament",  adminController.postEditTournament);
 
 router.post("/resetPassword", authorize.auth, adminController.postReset)
 

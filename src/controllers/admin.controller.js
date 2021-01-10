@@ -445,62 +445,68 @@ module.exports.getAlternative = async (req, res) =>{
         const pool1 = await poolPromise;
         
         var results = await pool.request()
-            .query(`select ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3, TD.VongDau from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
-            join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
-            join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
-            where TD.MuaGiai = ${muaGiai} and TD.VongDau = '${vongDau}'`);
-
-
+            .query(`SELECT * FROM TranDau WHERE MuaGiai = ${muaGiai}`);
+   
+        
+        res.render('alternative.ejs', {results: results});
         }catch(err){
         res.status(404);
         res.send(err.message);
     }
 
-    res.render('alternative.ejs', {results: results});
+    
 }
 
 module.exports.getEditTournament = async (req, res) =>{
-    var vongDau = parseInt(req.query.vongdau);
-    var muaGiai = 2020;
-    var id = req.query.id;
-
+    const {vongdau, CauThu1, CauThu2, tour} = req.query;
+    console.log(vongdau, CauThu1, CauThu2, tour);
     try{
         const pool = await poolPromise;
         const pool1 = await poolPromise;
         
         var results = await pool.request()
-            .query(`select ND1.TenDangNhap as ND1, ND2.TenDangNhap as ND2, ND1.HoTen as HT1, ND2.HoTen as HT2, ND3.HoTen as HT3, TD.VongDau, ` + id + ` as id
-            from TranDau TD join NguoiDung ND1 on TD.CauThu1 = ND1.TenDangNhap
-            join NguoiDung ND2 on TD.CauThu2 = ND2.TenDangNhap
-            join NguoiDung ND3 on TD.KetQua = ND3.TenDangNhap
-            where TD.MuaGiai = ${muaGiai} and TD.VongDau = '${vongDau}'
-            order by TD.VongDau
-            offset ` + id + ` rows
-            fetch next 1 rows only`);
-        var result = results.recordset[0];
-        console.log(req.session.TD);
+            .query(`SELECT * FROM TranDau WHERE MuaGiai = ${tour} and VongDau = ${vongdau} and CauThu1 = '${CauThu1}' and CauThu2 = '${CauThu2}'`);
+
+      
+        if (results.rowsAffected != 0){
+
+            var player1 = await pool.request()
+            .query(`SELECT * FROM NguoiDung WHERE TenDangNhap = '${results.recordset[0].CauThu1}'`);
+
+            var player2  = await pool.request()
+            .query(`SELECT * FROM NguoiDung WHERE TenDangNhap = '${results.recordset[0].CauThu2}'`)
+            
+            var kqPlayer1 = 0, kqPlayer2 = 0;
+            if (results.recordset[0].KetQua == results.recordset[0].CauThu1 ){
+                kqPlayer1 = 1;
+            }
+            else{
+                kqPlayer2 = 1;
+            }
+            res.render('Edittournament.ejs', {
+                player1,
+                player2,
+                kqPlayer1,
+                kqPlayer2,
+            });
+        }
+        else{
+
+            res.redirect("/admin/alternative")
+        }    
+        
         }catch(err){
         res.status(404);
         res.send(err.message);
     }
-    res.render('Edittournament.ejs', {result: result});
+    
 }
 
 module.exports.postEditTournament = async (req, res) =>{
-    /*
-    var vongDau = parseInt(req.session.TD.VongDau);
-    var muaGiai = 2020;
-    var player1 = req.session.TD.ND1;
-    var player2 = req.session.TD.ND2;
+    
+    const {MuaGiai, CauThu1, CauThu2} = req.params;
     var win;
-    if(req.body.score1 == 1){
-        win = player1;
-        req.session.TD.HT3 = req.session.TD.HT1
-    }else{
-        win = player2;
-        req.session.TD.HT3 = req.session.TD.HT2
-    }
-
+    
     try{
         const pool = await poolPromise;
         const pool1 = await poolPromise;
@@ -515,7 +521,7 @@ module.exports.postEditTournament = async (req, res) =>{
         res.send(err.message);
     }
     //res.render('Edittournament.ejs', {result: result});
-    */
+    
 }
 module.exports.postReset =  async (req, res) =>{
 
